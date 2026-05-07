@@ -46,6 +46,8 @@ pip install -r requirements.txt
 cp .env.example .env   # then fill in OPENAI_API_KEY and ANTHROPIC_API_KEY
 ```
 
+Note for Colab/HuggingFace: MLSUM is still distributed as a loader script, so `datasets` requires explicit consent. The CLIs already pass `trust_remote_code=True`, but if you call `datasets.load_dataset` directly, set `HF_DATASETS_TRUST_REMOTE_CODE=1` in your environment.
+
 For Colab, open `notebooks/colab_train.ipynb` — it handles installs and mounts Drive.
 
 ## End-to-end pipeline

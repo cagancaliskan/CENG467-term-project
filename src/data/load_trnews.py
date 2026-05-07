@@ -53,7 +53,7 @@ def _iter_hf(split_name: str, n: int | None, seed: int) -> Iterable[dict]:
     last_err: Exception | None = None
     for repo, config in HF_CANDIDATES:
         try:
-            ds = load_dataset(repo, config, split=split_name) if config else load_dataset(repo, split=split_name)
+            ds = load_dataset(repo, config, split=split_name, trust_remote_code=True) if config else load_dataset(repo, split=split_name, trust_remote_code=True)
             LOG.info("Loaded %s split=%s (%d rows)", repo, split_name, len(ds))
             if n is not None and n < len(ds):
                 ds = ds.shuffle(seed=seed).select(range(n * 2))
