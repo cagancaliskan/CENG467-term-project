@@ -1,0 +1,4 @@
+# Teacher-prompt ablation. Holds size=1000, rank=8 constant.
+runs:
+  - {prompt_variant: concise,  output_dir: outputs/checkpoints/ablation_prompt/concise}
+  - {prompt_variant: detailed, output_dir: outputs/checkpoints/ablation_prompt/detailed}

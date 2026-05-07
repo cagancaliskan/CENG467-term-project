@@ -1,0 +1,5 @@
+# Synthetic-size ablation. Holds rank=8, prompt=concise constant.
+runs:
+  - {size: 1000,  output_dir: outputs/checkpoints/ablation_size/n1k}
+  - {size: 5000,  output_dir: outputs/checkpoints/ablation_size/n5k}
+  - {size: 10000, output_dir: outputs/checkpoints/ablation_size/n10k}

@@ -1,0 +1,32 @@
+# Environments
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Data and model artifacts (regenerable; only *.synth.jsonl is committed)
+data/raw/
+data/processed/
+outputs/checkpoints/
+outputs/logs/
+outputs/predictions/
+
+# Allow committed synthetic + final results
+!data/synthetic/
+!outputs/results/
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+
+
+# System Prompts
+.cowork_instructions.md
+.cowork_prompt.md
+.PROJECT_PLAN.md
+ceng467_termproject.tar.gz

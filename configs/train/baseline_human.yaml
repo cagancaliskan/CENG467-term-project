@@ -1,0 +1,5 @@
+# Baseline B2 — train on human reference summaries from MLSUM-TR at 10k pairs.
+teacher: human
+size: 10000
+lora_rank: 8
+output_dir: outputs/checkpoints/B2_human_10k

@@ -1,0 +1,29 @@
+# Budget configuration — tier: balanced ($5-7 target).
+# Update PROJECT_PLAN.md §4 if you change anything here.
+
+teachers:
+  openai:
+    model: gpt-4o-mini
+    input_price_per_million: 0.15
+    output_price_per_million: 0.60
+  anthropic:
+    model: claude-3-haiku-20240307     # cheapest Haiku tier ($0.25/$1.25 per M)
+    input_price_per_million: 0.25
+    output_price_per_million: 1.25
+
+api_mode: real_time                    # 24h Batch API not used; real-time only
+
+article_truncation_chars: 3000          # was 8000; MLSUM-TR median is ~2500
+
+call_volumes_per_teacher:
+  train_concise: 10000                 # main synthetic dataset
+  train_detailed: 1000                 # prompt-ablation subset
+  test_mlsum: 2000                     # B3 teacher baseline on MLSUM test
+  ood_trnews: 1000                     # B3 teacher baseline on TR-News OOD
+  total: 14000
+
+estimated_cost_usd:
+  gpt_4o_mini: 2.35
+  claude_3_haiku: 4.20
+  retries_and_pilots: 0.50
+  total: 7.05

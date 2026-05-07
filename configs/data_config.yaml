@@ -1,0 +1,16 @@
+mlsum_tr:
+  hf_id: mlsum
+  hf_config: tu
+  out_dir: data/raw/mlsum_tr
+  n_train: 20000        # cap to keep teacher-cost predictable
+  n_validation: 2000
+  n_test: 2000
+  min_article_chars: 200
+  min_summary_chars: 20
+
+trnews:
+  hf_candidates:
+    - {repo: batubayk/TR-News}
+    - {repo: mukayese/tr-news}
+  out_path: data/raw/trnews/test.jsonl
+  n: 1000

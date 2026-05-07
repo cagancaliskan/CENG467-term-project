@@ -1,0 +1,10 @@
+# Documentation-only mirror of src/teachers/prompts.py. Update both together.
+concise:
+  max_output_tokens: 160
+  description: >
+    Two- to four-sentence Turkish summary. Strictly extractive about facts.
+detailed:
+  max_output_tokens: 220
+  description: >
+    Three- to five-sentence Turkish summary preserving 5W (who/what/where/when/why),
+    numerical fidelity, no editorializing.

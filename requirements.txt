@@ -1,0 +1,30 @@
+# Core ML stack — pinned for Colab T4 reproducibility (May 2026)
+torch==2.4.1
+transformers==4.46.3
+datasets==3.1.0
+accelerate==1.1.1
+peft==0.13.2
+sentencepiece==0.2.0
+protobuf==4.25.5
+
+# Teacher LLM clients
+openai==1.54.4
+anthropic==0.39.0
+
+# Evaluation
+rouge-score==0.1.2
+bert-score==0.3.13
+sacrebleu==2.4.3
+
+# Utilities
+pyyaml==6.0.2
+tqdm==4.67.0
+python-dotenv==1.0.1
+tenacity==9.0.0
+pandas==2.2.3
+numpy==1.26.4
+matplotlib==3.9.2
+scikit-learn==1.5.2
+
+# Demo
+gradio==5.6.0

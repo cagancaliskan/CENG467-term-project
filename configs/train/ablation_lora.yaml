@@ -1,0 +1,6 @@
+# LoRA-rank ablation. Holds size=10000, prompt=concise constant.
+runs:
+  - {lora_rank: 4,  output_dir: outputs/checkpoints/ablation_lora/r4}
+  - {lora_rank: 8,  output_dir: outputs/checkpoints/ablation_lora/r8}
+  - {lora_rank: 16, output_dir: outputs/checkpoints/ablation_lora/r16}
+  - {lora_rank: 32, output_dir: outputs/checkpoints/ablation_lora/r32}
