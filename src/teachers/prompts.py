@@ -29,7 +29,7 @@ CONCISE = PromptSpec(
         "olsun ve yalnızca özet içersin. Başlık, madde işareti veya açıklama ekleme.\n\n"
         "Haber:\n{article}\n\nÖzet:"
     ),
-    max_output_tokens=160,
+    max_output_tokens=200,
 )
 
 
@@ -50,7 +50,7 @@ DETAILED = PromptSpec(
         "5) Başlık, etiket veya madde işareti kullanma; sadece düz metin özet ver.\n\n"
         "Haber:\n{article}\n\nÖzet:"
     ),
-    max_output_tokens=220,
+    max_output_tokens=280,
 )
 
 
