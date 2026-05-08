@@ -15,7 +15,7 @@ from src.teachers.prompts import PromptSpec
 class AnthropicTeacher(BaseTeacher):
     name = "anthropic"
 
-    def __init__(self, model: str = "claude-3-haiku-20240307", temperature: float = 0.3,
+    def __init__(self, model: str = "claude-haiku-4-5-20251001", temperature: float = 0.3,
                  max_retries: int = 5, api_key: str | None = None):
         super().__init__(model=model, temperature=temperature, max_retries=max_retries)
         from anthropic import Anthropic

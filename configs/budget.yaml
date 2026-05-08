@@ -7,9 +7,9 @@ teachers:
     input_price_per_million: 0.15
     output_price_per_million: 0.60
   anthropic:
-    model: claude-3-haiku-20240307     # cheapest Haiku tier ($0.25/$1.25 per M)
-    input_price_per_million: 0.25
-    output_price_per_million: 1.25
+    model: claude-haiku-4-5-20251001   # Haiku 3 retired Apr 19 2026, Haiku 3.5 retired Feb 19 2026
+    input_price_per_million: 1.00
+    output_price_per_million: 5.00
 
 api_mode: real_time                    # 24h Batch API not used; real-time only
 
@@ -24,6 +24,6 @@ call_volumes_per_teacher:
 
 estimated_cost_usd:
   gpt_4o_mini: 2.35
-  claude_3_haiku: 4.20
+  claude_haiku_4_5: 18.20
   retries_and_pilots: 0.50
-  total: 7.05
+  total: 21.05
