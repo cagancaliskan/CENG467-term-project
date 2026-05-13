@@ -209,20 +209,53 @@ def fig5(main):
     x = [main[s]["rouge_standard"]["rouge1"] for s in systems]
     y = [main[s]["errors"]["frac_hallucinated_numbers"] for s in systems]
 
-    fig, ax = plt.subplots(figsize=(7.5, 5))
+    fig, ax = plt.subplots(figsize=(8.5, 5.5))
+
+    # Per-system label offsets so the bottom-right cluster doesn't collide.
+    LABEL_OFFSETS = {
+        "B1":       (10, 8),
+        "B3a":      (10, 8),
+        "B3b":      (10, 8),
+        "B2":       (12, -16),
+        "S-gpt":    (-46, 18),
+        "S-claude": (-60, -18),
+    }
+
     for s, xi, yi in zip(systems, x, y):
-        ax.scatter(xi, yi, s=180, color=COLOR[s], edgecolor="white", linewidth=2, zorder=3, label=s)
-        ax.annotate(s, (xi, yi), textcoords="offset points", xytext=(8, 8), fontsize=10)
+        ax.scatter(xi, yi, s=180, color=COLOR[s], edgecolor="white", linewidth=2, zorder=3)
+        dx, dy = LABEL_OFFSETS[s]
+        ax.annotate(
+            s, (xi, yi),
+            textcoords="offset points", xytext=(dx, dy),
+            fontsize=10, fontweight="bold", color=COLOR[s],
+            arrowprops=dict(arrowstyle="-", color=COLOR[s], lw=0.7, alpha=0.6,
+                             connectionstyle="arc3,rad=0.1"),
+        )
+
+    # Breathing room on both axes.
+    xmin = min(x) - 0.02
+    xmax = max(x) + 0.025
+    ymin = -0.003
+    ymax = max(y) * 1.12
+    ax.set_xlim(xmin, xmax)
+    ax.set_ylim(ymin, ymax)
 
     ax.set_xlabel("ROUGE-1 (standard) F1 — quality")
     ax.set_ylabel("Hallucinated-number fraction — risk")
     ax.set_title("Quality vs. faithfulness: students dominate the desirable quadrant")
     ax.grid(alpha=0.25)
 
-    # Annotate desirable corner
-    ax.annotate("desirable\n(high quality,\nlow hallucination)",
-                xy=(0.04, 0.02), xycoords="axes fraction",
-                fontsize=9, style="italic", color="#374151")
+    # Shade the desirable region (high quality, low hallucination) at bottom-right.
+    desirable_x = 0.20
+    desirable_y = 0.01
+    ax.axvspan(desirable_x, xmax, ymin=0, ymax=desirable_y / (ymax - ymin),
+                color="#10B981", alpha=0.08, zorder=0)
+    ax.annotate(
+        "desirable region\n(high quality, low hallucination)",
+        xy=(xmax - 0.005, ymin + 0.0015),
+        ha="right", va="bottom",
+        fontsize=9, style="italic", color="#047857",
+    )
 
     plt.tight_layout()
     plt.savefig(out_dir() / "fig5_halluc_quality.png")
