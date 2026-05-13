@@ -206,50 +206,51 @@ def fig4(main, ood):
 # ---- fig 5 — hallucination vs quality scatter ----
 def fig5(main):
     systems = ["B1", "B2", "B3a", "B3b", "S-gpt", "S-claude"]
+    descriptions = {
+        "B1":       "B1 - zero-shot mT5-small",
+        "B2":       "B2 - human-supervised",
+        "B3a":      "B3a - GPT-4o-mini (teacher)",
+        "B3b":      "B3b - Claude Haiku 4.5 (teacher)",
+        "S-gpt":    "S-gpt - synthetic, distilled from GPT-4o-mini",
+        "S-claude": "S-claude - synthetic, distilled from Claude Haiku 4.5",
+    }
+    markers = {  # different shapes group teachers vs students vs zero-shot
+        "B1": "X", "B2": "s", "B3a": "^", "B3b": "^", "S-gpt": "o", "S-claude": "o",
+    }
     x = [main[s]["rouge_standard"]["rouge1"] for s in systems]
     y = [main[s]["errors"]["frac_hallucinated_numbers"] for s in systems]
 
-    fig, ax = plt.subplots(figsize=(8.5, 5.5))
-
-    # Per-system label offsets so the bottom-right cluster doesn't collide.
-    LABEL_OFFSETS = {
-        "B1":       (10, 8),
-        "B3a":      (10, 8),
-        "B3b":      (10, 8),
-        "B2":       (12, -16),
-        "S-gpt":    (-46, 18),
-        "S-claude": (-60, -18),
-    }
+    fig, ax = plt.subplots(figsize=(9.5, 5.5))
 
     for s, xi, yi in zip(systems, x, y):
-        ax.scatter(xi, yi, s=180, color=COLOR[s], edgecolor="white", linewidth=2, zorder=3)
-        dx, dy = LABEL_OFFSETS[s]
-        ax.annotate(
-            s, (xi, yi),
-            textcoords="offset points", xytext=(dx, dy),
-            fontsize=10, fontweight="bold", color=COLOR[s],
-            arrowprops=dict(arrowstyle="-", color=COLOR[s], lw=0.7, alpha=0.6,
-                             connectionstyle="arc3,rad=0.1"),
+        ax.scatter(
+            xi, yi,
+            s=220,
+            color=COLOR[s],
+            marker=markers[s],
+            edgecolor="white",
+            linewidth=2,
+            zorder=3,
+            label=descriptions[s],
         )
 
-    # Breathing room on both axes.
+    # Axis range with breathing room
     xmin = min(x) - 0.02
     xmax = max(x) + 0.025
     ymin = -0.003
-    ymax = max(y) * 1.12
+    ymax = max(y) * 1.10
     ax.set_xlim(xmin, xmax)
     ax.set_ylim(ymin, ymax)
 
-    ax.set_xlabel("ROUGE-1 (standard) F1 — quality")
-    ax.set_ylabel("Hallucinated-number fraction — risk")
-    ax.set_title("Quality vs. faithfulness: students dominate the desirable quadrant")
-    ax.grid(alpha=0.25)
-
-    # Shade the desirable region (high quality, low hallucination) at bottom-right.
+    # Shade the desirable region (high quality, low hallucination)
     desirable_x = 0.20
-    desirable_y = 0.01
-    ax.axvspan(desirable_x, xmax, ymin=0, ymax=desirable_y / (ymax - ymin),
-                color="#10B981", alpha=0.08, zorder=0)
+    desirable_y_top = 0.010
+    ax.axvspan(
+        desirable_x, xmax,
+        ymin=0,
+        ymax=(desirable_y_top - ymin) / (ymax - ymin),
+        color="#10B981", alpha=0.10, zorder=0,
+    )
     ax.annotate(
         "desirable region\n(high quality, low hallucination)",
         xy=(xmax - 0.005, ymin + 0.0015),
@@ -257,11 +258,25 @@ def fig5(main):
         fontsize=9, style="italic", color="#047857",
     )
 
+    ax.set_xlabel("ROUGE-1 (standard) F1 - quality")
+    ax.set_ylabel("Hallucinated-number fraction - faithfulness risk")
+    ax.set_title("Quality vs. faithfulness: students dominate the desirable quadrant")
+    ax.grid(alpha=0.25)
+
+    # Legend outside the data region. Two columns for compactness.
+    ax.legend(
+        loc="upper left",
+        bbox_to_anchor=(1.02, 1.0),
+        frameon=False,
+        fontsize=10,
+        handletextpad=0.5,
+        borderaxespad=0,
+    )
+
     plt.tight_layout()
     plt.savefig(out_dir() / "fig5_halluc_quality.png")
     plt.close()
     print("  fig5_halluc_quality.png saved")
-
 
 # ---- main ----
 def main():
