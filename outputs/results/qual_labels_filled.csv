@@ -1,0 +1,181 @@
+id,system,factual_correct,completeness,fluency,morpho_correct,no_mode_collapse,notes
+6a59da6638055a40,B1,1,0,0,1,1,missed lede with stray extra_id token
+6a59da6638055a40,B2,1,0,0,1,1,leading extra_id token fragment
+6a59da6638055a40,B3a,1,1,1,1,1,
+6a59da6638055a40,B3b,1,1,1,1,1,
+6a59da6638055a40,S-gpt,1,0,0,1,1,broken syntax with extra_id token
+6a59da6638055a40,S-claude,1,0,0,1,1,broken syntax with extra_id token
+9474e1e7e3ad1695,B1,1,0,0,1,1,non-summary boilerplate fragment
+9474e1e7e3ad1695,B2,1,0,0,1,1,broken syntax with extra_id token
+9474e1e7e3ad1695,B3a,1,1,1,1,1,
+9474e1e7e3ad1695,B3b,1,1,1,1,1,
+9474e1e7e3ad1695,S-gpt,1,0,0,1,1,truncated mid-sentence with extra_id token
+9474e1e7e3ad1695,S-claude,1,0,0,1,1,truncated mid-sentence with extra_id token
+b24a4f980d156d10,B1,1,0,0,1,1,fragmentary with extra_id tokens
+b24a4f980d156d10,B2,1,0,0,1,1,broken fragment with extra_id token
+b24a4f980d156d10,B3a,1,1,1,1,1,
+b24a4f980d156d10,B3b,1,1,1,1,1,
+b24a4f980d156d10,S-gpt,0,1,0,0,1,garbled sentence boundaries hospital phrase misplaced
+b24a4f980d156d10,S-claude,1,0,0,1,1,truncated with extra_id token
+c6324f602216439a,B1,1,0,0,1,1,fragment with extra_id token
+c6324f602216439a,B2,1,0,0,1,1,fragment with extra_id token
+c6324f602216439a,B3a,1,1,1,1,1,
+c6324f602216439a,B3b,1,1,1,1,1,
+c6324f602216439a,S-gpt,1,0,0,1,1,fragment with extra_id token
+c6324f602216439a,S-claude,1,0,0,1,1,fragment with extra_id token
+461dde0c20e9a0c7,B1,1,0,0,1,1,unrelated boilerplate with extra_id tokens
+461dde0c20e9a0c7,B2,1,0,0,1,1,fragment with extra_id token
+461dde0c20e9a0c7,B3a,1,1,1,1,1,
+461dde0c20e9a0c7,B3b,1,1,0,1,1,truncated mid-sentence
+461dde0c20e9a0c7,S-gpt,1,0,0,1,1,fragment with extra_id token
+461dde0c20e9a0c7,S-claude,1,1,0,1,1,leading extra_id token
+f29afd591ea1f0b7,B1,1,0,0,1,1,fragment with extra_id token
+f29afd591ea1f0b7,B2,1,0,0,1,1,fragment with extra_id token
+f29afd591ea1f0b7,B3a,1,1,1,1,1,
+f29afd591ea1f0b7,B3b,1,1,1,1,1,
+f29afd591ea1f0b7,S-gpt,1,0,0,1,1,fragment with extra_id token
+f29afd591ea1f0b7,S-claude,1,0,0,1,1,fragment with extra_id token
+39eaa30844c31bd0,B1,0,0,0,1,1,fabricated wording with extra_id token
+39eaa30844c31bd0,B2,1,0,0,1,1,fragment with extra_id token
+39eaa30844c31bd0,B3a,1,1,1,1,1,
+39eaa30844c31bd0,B3b,1,1,1,1,1,
+39eaa30844c31bd0,S-gpt,1,0,0,1,1,fragment with extra_id token
+39eaa30844c31bd0,S-claude,1,1,0,1,1,leading extra_id token
+6d6b430527193e1f,B1,1,0,0,1,1,placeholder-like numerical fragment
+6d6b430527193e1f,B2,1,0,0,1,1,fragment with extra_id token
+6d6b430527193e1f,B3a,1,1,1,1,1,
+6d6b430527193e1f,B3b,1,1,1,1,1,
+6d6b430527193e1f,S-gpt,1,0,0,1,1,fragment with extra_id token
+6d6b430527193e1f,S-claude,0,0,0,1,1,wrong unit dollar instead of milyon dolar
+168156df1c374f5d,B1,1,0,0,1,1,non-summary boilerplate fragment
+168156df1c374f5d,B2,1,0,0,1,1,fragment with extra_id token
+168156df1c374f5d,B3a,1,1,1,1,1,
+168156df1c374f5d,B3b,1,1,1,1,1,
+168156df1c374f5d,S-gpt,1,0,0,1,1,fragment with extra_id token
+168156df1c374f5d,S-claude,1,0,0,1,1,fragment with extra_id token
+fb775d02dd6aaf5e,B1,1,0,1,1,1,vague generic fragment missing lede
+fb775d02dd6aaf5e,B2,1,0,0,1,1,fragment with extra_id token
+fb775d02dd6aaf5e,B3a,1,1,1,1,1,
+fb775d02dd6aaf5e,B3b,1,1,1,1,1,
+fb775d02dd6aaf5e,S-gpt,1,1,0,1,0,repeated phrase en iyi
+fb775d02dd6aaf5e,S-claude,1,1,0,1,0,repeated phrase Aralık ayları
+7c3dc7cea3cdf42e,B1,1,0,0,1,1,non-summary boilerplate fragment
+7c3dc7cea3cdf42e,B2,1,1,0,1,1,fragment with extra_id token
+7c3dc7cea3cdf42e,B3a,1,1,1,1,1,
+7c3dc7cea3cdf42e,B3b,1,1,1,1,1,
+7c3dc7cea3cdf42e,S-gpt,1,0,0,1,1,fragment with extra_id token
+7c3dc7cea3cdf42e,S-claude,0,1,1,1,1,misspelled name Sadie instead of Saide
+2246fb782ba368b4,B1,1,0,0,1,1,fragment with extra_id token
+2246fb782ba368b4,B2,1,1,0,1,1,fragment with extra_id token
+2246fb782ba368b4,B3a,1,1,1,1,1,
+2246fb782ba368b4,B3b,1,1,1,1,1,
+2246fb782ba368b4,S-gpt,1,1,0,1,1,fragment with extra_id token
+2246fb782ba368b4,S-claude,1,1,0,1,1,fragment with extra_id token
+018a399419cbccfc,B1,1,0,0,1,1,fragment with extra_id token
+018a399419cbccfc,B2,0,0,0,1,1,fabricated claim conflating destinations
+018a399419cbccfc,B3a,1,1,1,1,1,
+018a399419cbccfc,B3b,1,1,1,1,1,
+018a399419cbccfc,S-gpt,1,1,0,1,1,fragment with extra_id token
+018a399419cbccfc,S-claude,1,1,0,1,1,fragment with extra_id token
+02afb2f2dbd7325f,B1,1,0,0,1,0,repeated phrase yumurta dışarı çıkar
+02afb2f2dbd7325f,B2,1,0,1,1,1,fragment with extra_id token misses lede
+02afb2f2dbd7325f,B3a,1,1,1,1,1,
+02afb2f2dbd7325f,B3b,1,1,1,1,1,
+02afb2f2dbd7325f,S-gpt,1,1,0,1,1,fragment with extra_id token
+02afb2f2dbd7325f,S-claude,1,1,0,1,1,fragment with extra_id token
+b1f321f0fe9f1098,B1,1,0,0,1,1,non-summary boilerplate fragment
+b1f321f0fe9f1098,B2,1,0,0,1,1,fragment with extra_id token
+b1f321f0fe9f1098,B3a,1,1,1,1,1,
+b1f321f0fe9f1098,B3b,1,1,1,1,1,
+b1f321f0fe9f1098,S-gpt,1,0,0,1,1,fragment with extra_id token
+b1f321f0fe9f1098,S-claude,1,0,0,1,1,fragment with extra_id token
+b9de2a4aa4c2045e,B1,1,0,0,1,1,non-summary boilerplate fragment
+b9de2a4aa4c2045e,B2,1,1,0,1,1,fragment with extra_id token
+b9de2a4aa4c2045e,B3a,1,1,1,1,1,
+b9de2a4aa4c2045e,B3b,0,1,1,1,1,fabricated year 2014
+b9de2a4aa4c2045e,S-gpt,1,1,0,1,1,fragment with extra_id token
+b9de2a4aa4c2045e,S-claude,1,1,0,1,1,fragment with extra_id token
+8f1baaa9a4418f52,B1,1,0,0,1,1,non-summary boilerplate fragment
+8f1baaa9a4418f52,B2,1,0,0,1,1,fragment with extra_id token
+8f1baaa9a4418f52,B3a,1,1,1,1,1,
+8f1baaa9a4418f52,B3b,1,1,0,1,1,truncated mid-sentence
+8f1baaa9a4418f52,S-gpt,1,0,0,1,1,fragment with extra_id token
+8f1baaa9a4418f52,S-claude,0,1,0,0,1,scrambled claim Sabah S. shot and seized land
+2271e43e4c1919ca,B1,1,0,0,1,1,non-summary boilerplate fragment
+2271e43e4c1919ca,B2,1,0,0,1,1,fragment with extra_id token
+2271e43e4c1919ca,B3a,1,1,1,1,1,
+2271e43e4c1919ca,B3b,1,1,0,1,1,truncated mid-sentence
+2271e43e4c1919ca,S-gpt,1,1,0,1,1,fragment with extra_id token
+2271e43e4c1919ca,S-claude,1,1,0,0,1,subject mismatch Okan çarptı
+12c5408390208a4a,B1,1,1,0,1,1,fragment with extra_id token
+12c5408390208a4a,B2,1,1,0,1,1,fragment with extra_id token
+12c5408390208a4a,B3a,1,1,1,1,1,
+12c5408390208a4a,B3b,1,1,0,1,1,truncated mid-sentence
+12c5408390208a4a,S-gpt,1,1,0,1,1,fragment with extra_id token
+12c5408390208a4a,S-claude,1,1,0,1,1,fragment with extra_id token
+776bed294d35a295,B1,1,0,0,1,0,repeated boilerplate domain fragments
+776bed294d35a295,B2,1,0,0,1,1,fragment with extra_id token
+776bed294d35a295,B3a,1,1,1,1,1,
+776bed294d35a295,B3b,1,1,0,1,1,truncated mid-sentence
+776bed294d35a295,S-gpt,0,0,0,1,1,fabricated George Clooney mention
+776bed294d35a295,S-claude,0,1,0,1,1,fabricated George Clooney mention
+c138b06ca8d6b77d,B1,1,0,0,1,1,fragment with extra_id token
+c138b06ca8d6b77d,B2,1,1,0,1,1,fragment with extra_id token
+c138b06ca8d6b77d,B3a,1,1,1,1,1,
+c138b06ca8d6b77d,B3b,1,1,1,1,1,
+c138b06ca8d6b77d,S-gpt,1,1,0,1,1,fragment with extra_id token
+c138b06ca8d6b77d,S-claude,1,1,0,1,1,fragment with extra_id token
+bb6623d5de1dbb62,B1,1,0,0,1,1,fragment with extra_id token
+bb6623d5de1dbb62,B2,1,1,0,1,1,fragment with extra_id token
+bb6623d5de1dbb62,B3a,1,1,1,1,1,
+bb6623d5de1dbb62,B3b,1,1,0,1,1,truncated mid-sentence
+bb6623d5de1dbb62,S-gpt,1,1,0,1,1,fragment with extra_id token
+bb6623d5de1dbb62,S-claude,1,1,0,1,1,fragment with extra_id token
+f182f675a9037fe8,B1,1,0,0,1,1,non-summary repeated fragment
+f182f675a9037fe8,B2,1,0,0,1,1,fragment with extra_id token
+f182f675a9037fe8,B3a,1,1,1,1,1,
+f182f675a9037fe8,B3b,1,1,0,1,1,truncated mid-sentence
+f182f675a9037fe8,S-gpt,1,1,0,1,1,fragment with extra_id token
+f182f675a9037fe8,S-claude,1,0,0,1,1,fragment misattributes residency move
+7a5d36f78db0bf00,B1,1,0,0,1,1,fragment with extra_id token
+7a5d36f78db0bf00,B2,1,0,0,1,1,fragment with extra_id token
+7a5d36f78db0bf00,B3a,1,1,1,1,1,
+7a5d36f78db0bf00,B3b,1,1,1,1,1,
+7a5d36f78db0bf00,S-gpt,1,1,0,1,1,fragment with extra_id token
+7a5d36f78db0bf00,S-claude,1,1,0,1,1,fragment with extra_id token
+c403ebcf3b1d5bd4,B1,1,0,0,1,1,non-summary fragment
+c403ebcf3b1d5bd4,B2,1,1,0,1,1,fragment with extra_id token
+c403ebcf3b1d5bd4,B3a,1,1,1,1,1,
+c403ebcf3b1d5bd4,B3b,1,1,0,1,1,truncated mid-sentence
+c403ebcf3b1d5bd4,S-gpt,1,1,0,1,1,fragment with extra_id token
+c403ebcf3b1d5bd4,S-claude,1,1,0,1,1,fragment with extra_id token
+bedd6f86fa62f632,B1,1,0,0,1,1,non-summary fragment
+bedd6f86fa62f632,B2,1,1,0,1,1,fragment with extra_id token
+bedd6f86fa62f632,B3a,1,1,1,1,1,
+bedd6f86fa62f632,B3b,1,1,1,1,1,
+bedd6f86fa62f632,S-gpt,1,1,0,1,1,fragment with extra_id token
+bedd6f86fa62f632,S-claude,1,1,0,1,1,fragment with extra_id token
+c4ab0170200c22f1,B1,1,0,0,1,1,non-summary fragment
+c4ab0170200c22f1,B2,1,1,0,1,1,fragment with extra_id token
+c4ab0170200c22f1,B3a,1,1,1,1,1,
+c4ab0170200c22f1,B3b,1,1,0,1,1,truncated mid-sentence
+c4ab0170200c22f1,S-gpt,1,1,0,1,1,fragment with extra_id token
+c4ab0170200c22f1,S-claude,1,1,0,1,1,fragment with extra_id token
+824aabaf9f6722a6,B1,1,0,0,1,1,non-summary fragment
+824aabaf9f6722a6,B2,1,0,0,1,1,fragment with extra_id token
+824aabaf9f6722a6,B3a,1,1,1,1,1,
+824aabaf9f6722a6,B3b,1,1,0,1,1,truncated mid-sentence
+824aabaf9f6722a6,S-gpt,1,1,0,1,1,fragment with extra_id token
+824aabaf9f6722a6,S-claude,1,1,0,1,1,fragment with extra_id token
+05aa7211ca4efa64,B1,1,0,0,1,1,non-summary fragment
+05aa7211ca4efa64,B2,1,1,0,1,1,fragment with extra_id token
+05aa7211ca4efa64,B3a,1,1,1,1,1,
+05aa7211ca4efa64,B3b,1,1,0,1,1,truncated mid-sentence
+05aa7211ca4efa64,S-gpt,0,1,0,1,1,wrong border Suriye instead of Türkiye
+05aa7211ca4efa64,S-claude,0,1,0,1,1,subject confusion Mustafa as speaker
+77d34e1b01eb123e,B1,1,0,0,1,1,non-summary fragment
+77d34e1b01eb123e,B2,1,0,0,1,1,fragment with extra_id token
+77d34e1b01eb123e,B3a,1,1,1,1,1,
+77d34e1b01eb123e,B3b,1,1,1,1,1,
+77d34e1b01eb123e,S-gpt,1,0,0,1,1,fragment with extra_id token
+77d34e1b01eb123e,S-claude,1,0,0,1,1,fragment with extra_id token

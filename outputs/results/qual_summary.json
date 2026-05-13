@@ -1,0 +1,230 @@
+{
+  "B1": {
+    "n_examples_labeled": 30,
+    "axes_pass_rate": {
+      "factual_correct": 0.9666666666666667,
+      "completeness": 0.03333333333333333,
+      "fluency": 0.03333333333333333,
+      "morpho_correct": 1.0,
+      "no_mode_collapse": 0.9333333333333333
+    },
+    "axes_counts": {
+      "factual_correct": {
+        "n_labeled": 30,
+        "n_pass": 29,
+        "n_fail": 1
+      },
+      "completeness": {
+        "n_labeled": 30,
+        "n_pass": 1,
+        "n_fail": 29
+      },
+      "fluency": {
+        "n_labeled": 30,
+        "n_pass": 1,
+        "n_fail": 29
+      },
+      "morpho_correct": {
+        "n_labeled": 30,
+        "n_pass": 30,
+        "n_fail": 0
+      },
+      "no_mode_collapse": {
+        "n_labeled": 30,
+        "n_pass": 28,
+        "n_fail": 2
+      }
+    },
+    "overall_pass_rate": 0.5933333333333334
+  },
+  "B2": {
+    "n_examples_labeled": 30,
+    "axes_pass_rate": {
+      "factual_correct": 0.9666666666666667,
+      "completeness": 0.3333333333333333,
+      "fluency": 0.03333333333333333,
+      "morpho_correct": 1.0,
+      "no_mode_collapse": 1.0
+    },
+    "axes_counts": {
+      "factual_correct": {
+        "n_labeled": 30,
+        "n_pass": 29,
+        "n_fail": 1
+      },
+      "completeness": {
+        "n_labeled": 30,
+        "n_pass": 10,
+        "n_fail": 20
+      },
+      "fluency": {
+        "n_labeled": 30,
+        "n_pass": 1,
+        "n_fail": 29
+      },
+      "morpho_correct": {
+        "n_labeled": 30,
+        "n_pass": 30,
+        "n_fail": 0
+      },
+      "no_mode_collapse": {
+        "n_labeled": 30,
+        "n_pass": 30,
+        "n_fail": 0
+      }
+    },
+    "overall_pass_rate": 0.6666666666666666
+  },
+  "B3a": {
+    "n_examples_labeled": 30,
+    "axes_pass_rate": {
+      "factual_correct": 1.0,
+      "completeness": 1.0,
+      "fluency": 1.0,
+      "morpho_correct": 1.0,
+      "no_mode_collapse": 1.0
+    },
+    "axes_counts": {
+      "factual_correct": {
+        "n_labeled": 30,
+        "n_pass": 30,
+        "n_fail": 0
+      },
+      "completeness": {
+        "n_labeled": 30,
+        "n_pass": 30,
+        "n_fail": 0
+      },
+      "fluency": {
+        "n_labeled": 30,
+        "n_pass": 30,
+        "n_fail": 0
+      },
+      "morpho_correct": {
+        "n_labeled": 30,
+        "n_pass": 30,
+        "n_fail": 0
+      },
+      "no_mode_collapse": {
+        "n_labeled": 30,
+        "n_pass": 30,
+        "n_fail": 0
+      }
+    },
+    "overall_pass_rate": 1.0
+  },
+  "B3b": {
+    "n_examples_labeled": 30,
+    "axes_pass_rate": {
+      "factual_correct": 0.9666666666666667,
+      "completeness": 1.0,
+      "fluency": 0.6333333333333333,
+      "morpho_correct": 1.0,
+      "no_mode_collapse": 1.0
+    },
+    "axes_counts": {
+      "factual_correct": {
+        "n_labeled": 30,
+        "n_pass": 29,
+        "n_fail": 1
+      },
+      "completeness": {
+        "n_labeled": 30,
+        "n_pass": 30,
+        "n_fail": 0
+      },
+      "fluency": {
+        "n_labeled": 30,
+        "n_pass": 19,
+        "n_fail": 11
+      },
+      "morpho_correct": {
+        "n_labeled": 30,
+        "n_pass": 30,
+        "n_fail": 0
+      },
+      "no_mode_collapse": {
+        "n_labeled": 30,
+        "n_pass": 30,
+        "n_fail": 0
+      }
+    },
+    "overall_pass_rate": 0.92
+  },
+  "S-gpt": {
+    "n_examples_labeled": 30,
+    "axes_pass_rate": {
+      "factual_correct": 0.9,
+      "completeness": 0.5666666666666667,
+      "fluency": 0.0,
+      "morpho_correct": 0.9666666666666667,
+      "no_mode_collapse": 0.9666666666666667
+    },
+    "axes_counts": {
+      "factual_correct": {
+        "n_labeled": 30,
+        "n_pass": 27,
+        "n_fail": 3
+      },
+      "completeness": {
+        "n_labeled": 30,
+        "n_pass": 17,
+        "n_fail": 13
+      },
+      "fluency": {
+        "n_labeled": 30,
+        "n_pass": 0,
+        "n_fail": 30
+      },
+      "morpho_correct": {
+        "n_labeled": 30,
+        "n_pass": 29,
+        "n_fail": 1
+      },
+      "no_mode_collapse": {
+        "n_labeled": 30,
+        "n_pass": 29,
+        "n_fail": 1
+      }
+    },
+    "overall_pass_rate": 0.68
+  },
+  "S-claude": {
+    "n_examples_labeled": 30,
+    "axes_pass_rate": {
+      "factual_correct": 0.8333333333333334,
+      "completeness": 0.6666666666666666,
+      "fluency": 0.03333333333333333,
+      "morpho_correct": 0.9333333333333333,
+      "no_mode_collapse": 0.9666666666666667
+    },
+    "axes_counts": {
+      "factual_correct": {
+        "n_labeled": 30,
+        "n_pass": 25,
+        "n_fail": 5
+      },
+      "completeness": {
+        "n_labeled": 30,
+        "n_pass": 20,
+        "n_fail": 10
+      },
+      "fluency": {
+        "n_labeled": 30,
+        "n_pass": 1,
+        "n_fail": 29
+      },
+      "morpho_correct": {
+        "n_labeled": 30,
+        "n_pass": 28,
+        "n_fail": 2
+      },
+      "no_mode_collapse": {
+        "n_labeled": 30,
+        "n_pass": 29,
+        "n_fail": 1
+      }
+    },
+    "overall_pass_rate": 0.6866666666666666
+  }
+}

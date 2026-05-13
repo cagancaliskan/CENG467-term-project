@@ -22,7 +22,12 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 import gradio as gr
+import re
 import torch
+
+# Strip mT5 SentencePiece sentinel tokens (e.g., <extra_id_0>) that leak
+# through skip_special_tokens. Documented as a known failure mode in report §6.2.
+_SENTINEL_RE = re.compile(r"<extra_id_\d+>")
 from peft import PeftModel
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
@@ -82,7 +87,11 @@ def _student_summarize(model, article: str) -> str:
             length_penalty=1.0,
             early_stopping=True,
         )
-    return TOKENIZER.decode(out[0], skip_special_tokens=True).strip()
+    decoded = TOKENIZER.decode(out[0], skip_special_tokens=True)
+    # Defensive: strip mT5 SentencePiece sentinel tokens that occasionally
+    # leak through skip_special_tokens. See report §6.2 for the analysis.
+    decoded = _SENTINEL_RE.sub("", decoded).strip()
+    return decoded
 
 
 # ---- teacher LLM clients (optional, only if API keys present) ----

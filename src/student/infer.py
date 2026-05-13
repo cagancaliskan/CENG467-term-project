@@ -5,6 +5,7 @@ plain checkpoints. Outputs predictions JSONL aligned with the input file.
 """
 from __future__ import annotations
 
+import re
 import argparse
 import json
 from pathlib import Path
@@ -15,6 +16,10 @@ from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
 from src.utils.io import read_jsonl, write_jsonl
 from src.utils.logging import get_logger
+
+# Strip mT5 SentencePiece sentinel tokens (e.g., <extra_id_0>) that leak
+# through skip_special_tokens. Documented as a known failure mode in report §6.2.
+_SENTINEL_RE = re.compile(r"<extra_id_\d+>")
 from src.utils.seed import set_seed
 
 LOG = get_logger("student.infer")
@@ -96,6 +101,9 @@ def main() -> None:
                 early_stopping=True,
             )
         texts = tokenizer.batch_decode(out, skip_special_tokens=True)
+        # Defensive: strip mT5 SentencePiece sentinel tokens that leak through
+        # skip_special_tokens. See report §6.2.
+        texts = [_SENTINEL_RE.sub("", t).strip() for t in texts]
 
         for row, pred in zip(batch, texts):
             out_records.append({

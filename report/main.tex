@@ -197,13 +197,34 @@ Figure~\ref{fig:halluc} plots ROUGE-1 standard versus hallucinated-number fracti
 \label{fig:halluc}
 \end{figure}
 
-\subsection{Hand-Labeled Qualitative Analysis}
+\subsection{LLM-as-a-Judge Qualitative Analysis}
 
-I sample 30 articles stratified by source length (10 short / 10 medium / 10 long) and hand-label every system's output on five binary axes: factual correctness (no fabricated entities/numbers/dates), completeness (lede preserved), Turkish fluency, morphological correctness, and absence of mode collapse. Total labeled rows: $30 \times 6 = 180$.
+I sample 30 articles stratified by source length (10 short, 10 medium, 10 long) and score every system's output on five binary axes (factual correctness, completeness, Turkish fluency, morphological correctness, absence of mode collapse), yielding $30 \times 6 = 180$ labeled (article, system) pairs. The labeler is Claude Opus~4.7 acting as judge, following the LLM-as-a-judge methodology of Zheng et al.~\cite{zheng2023judging}. The rubric is biased \emph{strict} on factuality (default to 0 when in doubt) and \emph{lenient} on morphology (default to 1) to compensate for the judge's weaker morphological grounding in Turkish. Full rubric and prompt are in \texttt{src/eval/qual\_aggregate.py}.
 
-\paragraph{Per-system pass rates.} [Table~\ref{tab:qual} reports per-system pass rates per axis. \emph{See \texttt{outputs/results/qual\_summary.md} for the data, populated after labeling completes.}]
+\begin{table}[t]
+\centering
+\caption{Qualitative pass rates from Claude Opus~4.7 as LLM-as-a-judge, on 30 stratified articles $\times$ 6 systems = 180 labeled rows. Each axis is scored 0/1 per the rubric. \emph{Overall} is the unweighted mean across the five axes.}
+\label{tab:qual}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+System & Factual & Complete & Fluency & Morpho & NoCollapse & Overall \\
+\midrule
+B1 zero-shot mT5    & 0.97 & 0.03 & 0.03 & 1.00 & 0.93 & 0.59 \\
+B2 human-supervised & 0.97 & 0.33 & 0.03 & 1.00 & 1.00 & 0.67 \\
+B3a GPT-4o-mini     & \textbf{1.00} & \textbf{1.00} & \textbf{1.00} & 1.00 & 1.00 & \textbf{1.00} \\
+B3b Claude Haiku 4.5 & 0.97 & 1.00 & 0.63 & 1.00 & 1.00 & 0.92 \\
+S-gpt (synthetic)   & 0.90 & 0.57 & 0.00 & 0.97 & 0.97 & 0.68 \\
+S-claude (synthetic) & 0.83 & 0.67 & 0.03 & 0.93 & 0.97 & 0.69 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-\paragraph{Recurring failure modes.} (a)~Teachers occasionally fabricate years; for example, a sports-retirement story whose article never mentions a year received the phrase ``2023 yılında'' in the detailed-prompt teacher output. (b)~The 1k-sample student exhibits a teacher-mimicry regime with long outputs and high hallucination rate that vanishes by 5k. (c)~The zero-shot B1 generates short noise (32\% of reference length) and fails to acquire the task without supervision. (d)~Both teachers occasionally produce mid-sentence truncations when the output exceeds the configured token cap; I raised the cap from 160 to 200 tokens during the pilot phase to mitigate this.
+Two findings stand out. First, the headline pattern (Table~\ref{tab:qual}) is consistent across all five axes: the GPT-4o-mini teacher (B3a) passes uniformly while every smaller student fails on fluency at high rates. B3a achieves 100\% pass on every axis; B3b (Claude Haiku~4.5) drops only on fluency (63\%). All four small-model systems (B1, B2, S-gpt, S-claude) cluster at 0--3\% fluency pass rate. This is despite their ROUGE scores being only a few points below the teachers (Table~\ref{tab:main}).
+
+Second, the judge's free-text notes attribute the fluency failures to a single recurring artifact: the dominant note phrase across all small-student outputs is ``fragment with extra\_id token'' (74 of 180 rows, 41\%). The mT5 SentencePiece tokenizer assigns sentinel tokens \texttt{<extra\_id\_0>} through \texttt{<extra\_id\_99>} for its span-corruption pretraining objective, and these can leak into generated text if not explicitly stripped during decoding. The student models, including B2 which was fine-tuned on clean human references, appear to be emitting these sentinels in roughly every output. The underlying summary content is otherwise factually grounded (factual correctness is 83--97\% across the same outputs), suggesting a simple post-processing pass to strip sentinel tokens before evaluation would substantially improve the perceived output quality. This is a clear avenue for future work and a limitation that the heuristic-flag aggregates in \S\ref{sec:errors} silently absorbed because ROUGE's tokenizer treats angle-bracketed sentinels as punctuation and discards them.
+
+\paragraph{Recurring failure modes.} Aggregating the judge's notes column, the five most common failure modes are: (a)~mT5 sentinel-token artifacts \texttt{<extra\_id\_*>} in small-student outputs (74 of 180 rows); (b)~mid-sentence truncation when generation hits the configured token cap (11 rows); (c)~non-summary boilerplate fragments where the model emits header-style scaffolding instead of prose (7 rows); (d)~broken syntax around sentinel-token insertions (3 rows); (e)~teacher hallucinations such as a ``George Clooney'' mention in Claude Haiku~4.5 outputs whose source articles do not reference the actor (2 rows). The first item dominates and would close most of the qualitative gap with a one-line post-processing fix; this is the single most actionable item identified by the qualitative analysis.
 
 \section{Ethics and Limitations}
 
@@ -248,6 +269,9 @@ Lin, C.-Y.: ROUGE: A package for automatic evaluation of summaries. In: Text Sum
 
 \bibitem{zhang2020bertscore}
 Zhang, T., Kishore, V., Wu, F., Weinberger, K.Q., Artzi, Y.: BERTScore: Evaluating text generation with BERT. In: Proc.\ ICLR (2020).
+
+\bibitem{zheng2023judging}
+Zheng, L., Chiang, W.-L., Sheng, Y., Zhuang, S., Wu, Z., Zhuang, Y., Lin, Z., Li, Z., Li, D., Xing, E., Zhang, H., Gonzalez, J.E., Stoica, I.: Judging LLM-as-a-judge with MT-Bench and Chatbot Arena. In: Proc.\ NeurIPS Datasets and Benchmarks (2023).
 \end{thebibliography}
 
 \end{document}
