@@ -54,6 +54,10 @@ def main() -> None:
                     help="Only used when --teacher is openai or anthropic.")
     p.add_argument("--size", type=int, required=True, help="Number of training pairs to keep.")
     p.add_argument("--val-size", type=int, default=500)
+    p.add_argument("--val-source", default="human", choices=["human", "teacher"],
+                    help="Where validation targets come from. Default 'human' uses MLSUM-TR\n"
+                          "reference summaries, which matches test-time evaluation; 'teacher'\n"
+                          "uses the synthetic teacher cache (only valid if cache covers val rows).")
     p.add_argument("--out-dir", required=True,
                     help="Where to write train.jsonl and validation.jsonl.")
     p.add_argument("--seed", type=int, default=42)
@@ -101,6 +105,11 @@ def main() -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
 
     train_out = build(train_rows, args.size, "train")
+
+    # Validation: by default use human references (val cache rarely populated).
+    if args.val_source == "human":
+        def get_target(row):
+            return row.get("reference")
     val_out = build(val_rows, args.val_size, "validation")
 
     n_train = write_jsonl(out_dir / "train.jsonl", train_out)

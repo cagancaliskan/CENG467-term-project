@@ -62,8 +62,13 @@ def main() -> None:
     p.add_argument("--logging-steps", type=int, default=50)
     p.add_argument("--save-total-limit", type=int, default=2)
     p.add_argument("--gradient-checkpointing", action="store_true")
-    p.add_argument("--fp16", action="store_true", default=True)
+    # mT5 was pretrained in bf16; fp16 produces NaN losses on training (well-known issue).
+    # Default to fp32 for stability. On bf16-capable hardware (A100/A10/L4/H100), pass --bf16.
+    p.add_argument("--fp16", action="store_true", default=False,
+                    help="Enable fp16. Causes NaN losses with mT5 — only use if you know your model tolerates it.")
     p.add_argument("--no-fp16", dest="fp16", action="store_false")
+    p.add_argument("--bf16", action="store_true", default=False,
+                    help="Enable bf16. Stable for mT5 but requires Ampere+ GPU (A100, A10, L4, H100).")
     p.add_argument("--seed", type=int, default=42)
     p.add_argument("--max-train-samples", type=int, default=None,
                     help="Cap training rows after loading; useful for size ablations.")
@@ -152,6 +157,7 @@ def main() -> None:
         weight_decay=args.weight_decay,
         logging_steps=args.logging_steps,
         fp16=args.fp16 and torch.cuda.is_available(),
+        bf16=args.bf16 and torch.cuda.is_available(),
         predict_with_generate=False,   # we evaluate generation separately to keep training fast
         load_best_model_at_end=True,
         metric_for_best_model="eval_loss",
@@ -168,7 +174,7 @@ def main() -> None:
         train_dataset=train_ds,
         eval_dataset=val_ds,
         data_collator=collator,
-        tokenizer=tokenizer,
+        processing_class=tokenizer,
     )
 
     LOG.info("Starting training")
