@@ -30,3 +30,9 @@ outputs/predictions/
 .cowork_prompt.md
 .PROJECT_PLAN.md
 ceng467_termproject.tar.gz
+
+# Report staging artifacts (not part of submission)
+report/_overleaf_upload.zip
+report/_overleaf_upload/
+report/_preview/
+report/Synthetic_Data_Distillation_*.pdf

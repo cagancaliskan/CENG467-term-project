@@ -1,4 +1,4 @@
-\documentclass[runningheads]{llncs}
+\documentclass{llncs}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
@@ -6,18 +6,23 @@
 \usepackage{url}
 \usepackage{hyperref}
 \usepackage{xcolor}
-\usepackage{caption}
 \hypersetup{colorlinks=true,linkcolor=black,citecolor=blue,urlcolor=blue}
+\setlength{\emergencystretch}{3em}  % allow extra word spacing to avoid overfull boxes
+
+% --- Pagination safety ---
+\clubpenalty=10000             % no single-line orphans at page bottoms
+\widowpenalty=10000            % no single-line widows at page tops
+\displaywidowpenalty=10000     % same for math display
+\usepackage[section]{placeins} % FloatBarrier before every \section, keeps figures in their own section
 
 \begin{document}
+\sloppy
 
 \title{Synthetic Data Distillation from Large Language Models for Turkish Abstractive News Summarization}
 
-\titlerunning{Synthetic Distillation for Turkish News Summarization}
 
-\author{Çağan Çalışkan\inst{1}}
+\author{Çağan Çalışkan}
 
-\authorrunning{Ç. Çalışkan}
 
 \institute{Izmir Institute of Technology, Department of Computer Engineering \\
 \email{caliskancagan2005@gmail.com}}
@@ -25,7 +30,7 @@
 \maketitle
 
 \begin{abstract}
-Large multilingual language models produce strong abstractive summaries for Turkish news but are too expensive and slow for deployment at scale. I study \emph{synthetic data distillation}: prompt a large teacher LLM once to generate summaries for a corpus of Turkish news articles, then fine-tune a small student model (mT5-small with LoRA adapters) on those synthetic pairs. I evaluate against three baselines on MLSUM-TR: a zero-shot small model, the same small model supervised on human references, and the teacher LLM directly. Results from 9{,}989 GPT-4o-mini synthetic summaries and 9{,}987 Claude Haiku~4.5 synthetic summaries show that the distilled student reaches within 1.7 ROUGE-1 points of its teacher in-domain and \emph{outperforms} the teacher by 1.4 ROUGE-1 points out-of-domain on TR-News. The student also hallucinates numeric facts approximately five times less often than its teacher. Ablations over synthetic dataset size, LoRA rank, prompt design, and teacher choice characterize the design space and reveal a phase transition where the student stops mimicking the teacher's verbosity and adopts a more extractive, faithful style.
+Large multilingual language models produce strong abstractive summaries for Turkish news but are too expensive and slow for deployment at scale. I study \emph{synthetic data distillation}: prompt a large teacher LLM once to generate summaries for a corpus of Turkish news articles, then fine-tune a small student model (mT5-small with LoRA adapters) on those synthetic pairs. I evaluate against three baselines on MLSUM-TR: a zero-shot small model, the same small model supervised on human references, and the teacher LLM directly. Results from \textbf{9{,}989} GPT-4o-mini synthetic summaries and \textbf{9{,}987} Claude Haiku~4.5 synthetic summaries show that the distilled student reaches within \textbf{1.7 ROUGE-1 points} of its teacher in-domain and \emph{outperforms} the teacher by \textbf{1.4 ROUGE-1 points} out-of-domain on TR-News. The student also hallucinates numeric facts \textbf{approximately five times less often} than its teacher. Ablations over synthetic dataset size, LoRA rank, prompt design, and teacher choice characterize the design space and reveal a phase transition where the student stops mimicking the teacher's verbosity and adopts a more extractive, faithful style.
 \keywords{Abstractive Summarization \and Turkish NLP \and Knowledge Distillation \and Parameter-Efficient Fine-Tuning \and mT5 \and LoRA.}
 \end{abstract}
 
@@ -35,7 +40,7 @@ Abstractive summarization of news articles is a sequence-to-sequence generation 
 
 This paper studies whether a small student model fine-tuned on synthetic summaries from a teacher LLM can recover most of the teacher's quality while being orders of magnitude cheaper at inference. Concretely, I prompt each of two commercial LLMs to generate $\sim$10{,}000 abstractive summaries of MLSUM-TR articles, then fine-tune mT5-small (\(\sim\)300M parameters) with LoRA adapters on those synthetic pairs. I compare the resulting student against three baselines: zero-shot mT5-small, mT5-small supervised on human reference summaries, and the teacher LLM itself. I evaluate using ROUGE (standard and Turkish stem-aware variants), BERTScore F1, and a suite of heuristic error flags. I additionally evaluate every system on a held-out corpus (TR-News) to assess out-of-domain generalization.
 
-\paragraph{Contributions.} (1)~An empirical mapping of synthetic-data distillation for Turkish abstractive summarization across four ablation dimensions: synthetic dataset size, LoRA rank, prompt design, and teacher choice. (2)~Evidence that the distilled student \emph{outperforms} both teachers out-of-domain while remaining competitive in-domain. (3)~A finding that the distilled student hallucinates numeric facts roughly five times less often than its teacher, despite being trained on outputs that include teacher hallucinations. (4)~A reproducible pipeline with complete prompts, training configurations, and evaluation scripts publicly available at \url{https://github.com/cagancaliskan/CENG467-term-project}.
+\paragraph{Contributions.} I provide an empirical mapping of synthetic-data distillation for Turkish summarization across four ablation dimensions (data size, LoRA rank, prompt design, teacher choice), with evidence that the distilled student outperforms both teachers out-of-domain and hallucinates roughly five times less in-domain despite training on outputs that include teacher hallucinations. The full pipeline is at \url{https://github.com/cagancaliskan/CENG467-term-project}.
 
 \section{Related Work}
 
@@ -45,7 +50,7 @@ This paper studies whether a small student model fine-tuned on synthetic summari
 
 \textbf{Parameter-efficient fine-tuning.} LoRA~\cite{hu2021lora} inserts trainable low-rank decompositions into frozen attention projections. At rank 8 targeting the $q$ and $v$ projections, only 344k parameters ($\sim$0.11\% of the model) are trained, making full fine-tuning unnecessary.
 
-\textbf{Distillation from generated outputs.} Hinton et al.~\cite{hinton2015distillation} introduced knowledge distillation as transferring a teacher's soft probabilities to a student. Recent work~\cite{taori2023alpaca,wang2023selfinstruct} demonstrates that distilling \emph{generated outputs}, rather than soft probabilities, suffices to transfer significant capability. This paper extends the output-distillation paradigm to a low-resource Turkish setting with a substantial teacher-to-student size mismatch.
+\textbf{Distillation from generated outputs.} Following Hinton et al.~\cite{hinton2015distillation} and recent output-distillation work~\cite{taori2023alpaca,wang2023selfinstruct}, I distill an LLM's generated text rather than soft probabilities, extending the paradigm to a low-resource Turkish setting.
 
 \textbf{Evaluation.} ROUGE~\cite{lin2004rouge} measures lexical $n$-gram overlap. BERTScore~\cite{zhang2020bertscore} measures cosine similarity of contextual embeddings; I use the multilingual xlm-roberta-large encoder. To partially mitigate ROUGE's known underestimation for Turkish, I additionally report a 5-character prefix-stemmed variant.
 
@@ -66,11 +71,11 @@ I designed two Turkish prompt variants. The \textbf{concise} prompt asks for a 2
 
 \subsection{Student Architecture and Training}
 
-The student is \texttt{google/mt5-small} with LoRA adapters of rank 8 (unless ablated otherwise) inserted into the $q$ and $v$ projections of every self-attention block. This yields 344{,}064 trainable parameters out of 300{,}520{,}832 total (0.11\%). I train for 3 epochs with effective batch size 16 (per-device batch 4, gradient accumulation 4), learning rate $3 \times 10^{-4}$, warmup ratio 0.05, fp32 precision (mT5 produces NaN losses under fp16~\cite{xue2021mt5} and the T4 GPU lacks hardware bf16). One 10k-pair training run completes in $\sim$30 minutes on a Colab T4. I validate against the corresponding split's \emph{human} references rather than teacher outputs, so the validation signal matches the test distribution.
+The student is \texttt{google/mt5-small} with LoRA adapters of rank 8 (unless ablated) on $q$ and $v$ projections of every self-attention block, yielding 344{,}064 trainable parameters out of 300{,}520{,}832 total (\textbf{0.11\%}). Training uses 3 epochs, effective batch size 16 (per-device 4, gradient accumulation 4), learning rate $3 \times 10^{-4}$, warmup ratio 0.05, fp32 precision (mT5 produces NaN losses under fp16~\cite{xue2021mt5}; T4 lacks hardware bf16). One 10k-pair run completes in $\sim$\textbf{30 minutes} on a Colab T4. Validation uses human references rather than teacher outputs, matching the test distribution.
 
 \subsection{Evaluation}
 
-I report ROUGE-1, ROUGE-2, and ROUGE-L F1 in two variants: \emph{standard} (Unicode-aware lowercase whitespace tokenization) and \emph{stem} (additionally apply a 5-character Turkish prefix stemmer). BERTScore F1 uses xlm-roberta-large. I additionally compute five heuristic error flags per prediction (\texttt{src/eval/error\_analysis.py}): the fraction of 4-grams repeated within the prediction; the fraction of numeric tokens in the prediction that do not appear in the source article (\texttt{halluc\#}); mean unigram overlap with the source (\texttt{extract}); prediction-to-reference token-length ratio (\texttt{len\_ratio}); and a morphology flag for unusually long agglutinated tokens.
+I report ROUGE-1/2/L F1 in two variants: \emph{standard} (Unicode lowercase tokenization) and \emph{stem} (5-character Turkish prefix stemmer). BERTScore F1 uses xlm-roberta-large. Five per-prediction heuristic flags (\texttt{src/eval/error\_analysis.py}) measure 4-gram repetition, hallucinated numbers (\texttt{halluc\#}), unigram overlap with source (\texttt{extract}), length ratio (\texttt{len\_ratio}), and a morphology flag for unusually long tokens.
 
 \section{Experiments}
 
@@ -88,7 +93,7 @@ I report ROUGE-1, ROUGE-2, and ROUGE-L F1 in two variants: \emph{standard} (Unic
 
 Table~\ref{tab:main} reports performance on the MLSUM-TR test set ($n{=}2{,}000$). Figure~\ref{fig:main} visualizes the headline metrics.
 
-\begin{table}[t]
+\begin{table}[!ht]
 \centering
 \caption{Main results on MLSUM-TR test (2{,}000 articles). \textbf{R1/R2/RL}: ROUGE F1; \textbf{stem}: with 5-character Turkish prefix stemmer. \textbf{BSf1}: BERTScore F1 (xlm-roberta-large). \textbf{halluc\#}: fraction with at least one hallucinated number. \textbf{lr}: length ratio.}
 \label{tab:main}
@@ -107,20 +112,20 @@ S-claude (synthetic) & 0.259 & 0.156 & 0.229 & 0.299 & 0.871 & 0.004 & 0.98 \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[t]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=\linewidth]{figures/fig1_main_bar.png}
 \caption{Six-system comparison on MLSUM-TR. (a)~ROUGE-1 stem rewards lexical agreement with reference; teachers and synthetic students both reach $\sim$0.30. (b)~BERTScore F1 rewards semantic similarity; the teachers lead by $\sim$0.02 over the small students.}
 \label{fig:main}
 \end{figure}
 
-Three observations. First, distillation transfers most teacher capability: S-gpt reaches R1 stem 0.301 against the teacher's 0.332 (91\% of teacher quality) and is statistically tied with the human-supervised B2 on BERTScore F1. Second, the two teachers are essentially indistinguishable: B3a and B3b differ by 0.002 R1~std and 0.003 BERTScore F1, and their distilled students S-gpt and S-claude differ by similarly small amounts. Teacher choice is a weak design lever for this task. Third, the small students hallucinate numbers five times less than their teachers ($0.004$ vs.\ $0.021$ and $0.039$). This is the most interesting in-domain finding: the student inherits an extractive bias from synthetic supervision that the LLM teachers do not have.
+Three observations. First, distillation transfers most teacher capability: S-gpt reaches R1 stem \textbf{0.301} against the teacher's 0.332 (\textbf{91\% of teacher quality}) and is statistically tied with the human-supervised B2 on BERTScore F1. Second, the two teachers are essentially indistinguishable: B3a and B3b differ by 0.002 R1~std and 0.003 BERTScore F1, and their distilled students S-gpt and S-claude differ by similarly small amounts. Teacher choice is a weak design lever for this task. Third, the small students hallucinate numbers \textbf{five times less} than their teachers (\textbf{0.004} vs.\ 0.021 and 0.039). This is the most interesting in-domain finding: the student inherits an extractive bias from synthetic supervision that the LLM teachers do not have.
 
 \subsection{Out-of-Domain Generalization}
 
-Table~\ref{tab:ood} and Figure~\ref{fig:ood} report TR-News results. The striking finding: the synthetic students degrade by at most 0.5 R1 points moving out of domain, while the teachers degrade by approximately 3 R1 points. As a consequence, \emph{the distilled S-gpt outperforms its GPT teacher on TR-News} (0.260 vs.\ 0.246 R1~std).
+Table~\ref{tab:ood} and Figure~\ref{fig:ood} report TR-News results. The striking finding: the synthetic students degrade by \textbf{at most 0.5 R1 points} moving out of domain, while the teachers degrade by \textbf{approximately 3 R1 points}. As a consequence, \emph{the distilled S-gpt outperforms its GPT teacher on TR-News} (\textbf{0.260} vs.\ 0.246 R1~std).
 
-\begin{table}[t]
+\begin{table}[!ht]
 \centering
 \caption{Out-of-domain results on TR-News test (1{,}000 articles). $\Delta$~R1: change versus the in-domain MLSUM-TR result of the same system.}
 \label{tab:ood}
@@ -139,7 +144,7 @@ S-claude (synthetic) & 0.254 & 0.297 & 0.873 & 0.006 & 1.43 & $-0.005$ \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[t]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=\linewidth]{figures/fig4_ood.png}
 \caption{In-domain vs.\ out-of-domain ROUGE-1 per system. Teachers degrade $\sim$3 points moving from MLSUM-TR to TR-News; trained students stay essentially flat.}
@@ -155,9 +160,9 @@ I run four ablations along the dimensions most likely to affect the result.
 
 \subsection{Synthetic Dataset Size}
 
-Figure~\ref{fig:scaling} plots S-gpt quality as the synthetic training set grows from 1k to 10k. R1~std climbs from 0.160 to 0.261 with clear diminishing returns: doubling from 5k to 10k yields only $+3.0$ points after $4\times$ data buys $+7.1$ points going 1k to 5k. The 1k variant exhibits a qualitative \emph{phase transition}: at 1k the student is still in a teacher-mimic regime ($\mathrm{len\_ratio}{=}2.37$, $\mathrm{halluc\#}{=}0.050$), but by 5k it has settled into the compact extractive style ($\mathrm{len\_ratio}{=}0.82$, $\mathrm{halluc\#}{=}0.009$) it will carry through 10k. The transition is not about learning more facts; it is about adopting the small-model output prior.
+Figure~\ref{fig:scaling} plots S-gpt quality as the synthetic training set grows from 1k to 10k. R1~std climbs from \textbf{0.160 to 0.261} with clear diminishing returns: doubling from 5k to 10k yields only $\textbf{+3.0}$ points after $4\times$ data buys $\textbf{+7.1}$ points going 1k to 5k. The 1k variant exhibits a qualitative \emph{phase transition}: at 1k the student is still in a teacher-mimic regime ($\mathrm{len\_ratio}{=}2.37$, $\mathrm{halluc\#}{=}0.050$), but by 5k it has settled into the compact extractive style ($\mathrm{len\_ratio}{=}0.82$, $\mathrm{halluc\#}{=}0.009$) it will carry through 10k. The transition is not about learning more facts; it is about adopting the small-model output prior.
 
-\begin{figure}[t]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=0.85\linewidth]{figures/fig2_scaling.png}
 \caption{Synthetic dataset size scaling for the GPT-supervised student. Diminishing returns past 5k; the human-supervised B2 ceiling and GPT teacher ceiling are shown as horizontal references.}
@@ -166,31 +171,27 @@ Figure~\ref{fig:scaling} plots S-gpt quality as the synthetic training set grows
 
 \subsection{LoRA Rank}
 
-Figure~\ref{fig:lora} reports four S-gpt students differing only in LoRA rank. R1~std climbs monotonically with rank: 0.243~(r4) $\to$ 0.261~(r8) $\to$ 0.276~(r16) $\to$ 0.285~(r32). At rank 32 the student matches the GPT teacher on standard ROUGE-1, but \emph{hallucinations rise} from 0.003 at rank 16 to 0.012 at rank 32 (a factor of four). I interpret this as the extra capacity being used to memorize teacher-specific tokens, including some of the teacher's hallucinated numbers. Rank 8 is the Pareto-efficient operating point: within 1.4 points of rank 32 on R1, with no hallucination penalty, and at $\frac{1}{4}$ the trainable parameter count.
+Figure~\ref{fig:lora} reports four S-gpt students differing only in LoRA rank. R1~std climbs monotonically with rank: \textbf{0.243~(r4) $\to$ 0.261~(r8) $\to$ 0.276~(r16) $\to$ 0.285~(r32)}. At rank 32 the student matches the GPT teacher on standard ROUGE-1, but \emph{hallucinations rise} from 0.003 at rank 16 to 0.012 at rank 32 (\textbf{a factor of four}). I interpret this as the extra capacity being used to memorize teacher-specific tokens, including some of the teacher's hallucinated numbers. Rank 8 is the Pareto-efficient operating point: within 1.4 points of rank 32 on R1, with no hallucination penalty, and at $\frac{1}{4}$ the trainable parameter count.
 
-\begin{figure}[t]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=0.85\linewidth]{figures/fig3_lora.png}
 \caption{LoRA rank ablation. Quality climbs to the teacher ceiling at rank 32 but the hallucination rate roughly quadruples past rank 16. Rank 8 is Pareto-optimal.}
 \label{fig:lora}
 \end{figure}
 
-\subsection{Prompt Design}
+\subsection{Prompt Design and Teacher Choice}
 
-Holding size at 1{,}000 synthetic examples, the detailed prompt (which explicitly requires five-W coverage) yields $+1.4$ R1~std points over the concise prompt for the S-gpt student. However, hallucinated-number rate rises by $+1.7$ percentage points (from $0.051$ to $0.068$). The detailed prompt elicits more specific facts from the teacher; the student then over-applies those specifics when source evidence is absent. Prompt design is therefore a real lever, but with a faithfulness cost.
-
-\subsection{Teacher Choice}
-
-Comparing S-gpt and S-claude at all matched configurations, the largest difference is 0.003 R1~std, well below the noise of stochastic training. Choice of teacher does not measurably affect downstream student quality in this setting, which is consistent with the in-domain teacher tie observed in B3a vs B3b.
+Holding size at 1{,}000 synthetic examples, the detailed prompt (which explicitly requires five-W coverage) yields $\textbf{+1.4}$ R1~std points over the concise prompt for the S-gpt student, but hallucinated-number rate rises by $\textbf{+1.7}$ percentage points (from $0.051$ to $0.068$). The detailed prompt elicits more specific facts, which the student then over-applies when source evidence is absent: a real but faithfulness-costly lever. By contrast, comparing S-gpt and S-claude at all matched configurations, the largest difference is \textbf{0.003 R1~std}, well below stochastic-training noise. The choice of teacher LLM does not measurably affect downstream student quality, consistent with the in-domain teacher tie B3a vs B3b.
 
 \section{Error Analysis}
 \label{sec:errors}
 
 \subsection{Heuristic Quantitative Analysis}
 
-Figure~\ref{fig:halluc} plots ROUGE-1 standard versus hallucinated-number fraction for all six systems on MLSUM-TR. The pattern is unambiguous: the trained students (B2, S-gpt, S-claude) cluster in the desirable high-quality / low-hallucination quadrant; the teachers (B3a, B3b) achieve comparable quality but at substantially higher hallucination rates; B1 is bad on both dimensions. This is the strongest two-dimensional summary of the paper's findings.
+Figure~\ref{fig:halluc} plots ROUGE-1 against hallucinated-number fraction for all six systems on MLSUM-TR. Trained students (B2, S-gpt, S-claude) cluster in the desirable high-quality / low-hallucination quadrant; teachers (B3a, B3b) achieve comparable quality at $\sim 5\times$ higher hallucination rates; B1 is poor on both. This is the strongest two-dimensional summary of the paper's findings.
 
-\begin{figure}[t]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=0.7\linewidth]{figures/fig5_halluc_quality.png}
 \caption{Quality (ROUGE-1) versus faithfulness risk (hallucinated-number rate). Trained students dominate the desirable bottom-right region; teachers achieve similar quality but with $\sim 5\times$ higher risk.}
@@ -201,7 +202,7 @@ Figure~\ref{fig:halluc} plots ROUGE-1 standard versus hallucinated-number fracti
 
 I sample 30 articles stratified by source length (10 short, 10 medium, 10 long) and score every system's output on five binary axes (factual correctness, completeness, Turkish fluency, morphological correctness, absence of mode collapse), yielding $30 \times 6 = 180$ labeled (article, system) pairs. The labeler is Claude Opus~4.7 acting as judge, following the LLM-as-a-judge methodology of Zheng et al.~\cite{zheng2023judging}. The rubric is biased \emph{strict} on factuality (default to 0 when in doubt) and \emph{lenient} on morphology (default to 1) to compensate for the judge's weaker morphological grounding in Turkish. Full rubric and prompt are in \texttt{src/eval/qual\_aggregate.py}.
 
-\begin{table}[t]
+\begin{table}[!ht]
 \centering
 \caption{Qualitative pass rates from Claude Opus~4.7 as LLM-as-a-judge, on 30 stratified articles $\times$ 6 systems = 180 labeled rows. Each axis is scored 0/1 per the rubric. \emph{Overall} is the unweighted mean across the five axes.}
 \label{tab:qual}
@@ -222,25 +223,21 @@ S-claude (synthetic) & 0.83 & 0.67 & 0.03 & 0.93 & 0.97 & 0.69 \\
 
 Two findings stand out. First, the headline pattern (Table~\ref{tab:qual}) is consistent across all five axes: the GPT-4o-mini teacher (B3a) passes uniformly while every smaller student fails on fluency at high rates. B3a achieves 100\% pass on every axis; B3b (Claude Haiku~4.5) drops only on fluency (63\%). All four small-model systems (B1, B2, S-gpt, S-claude) cluster at 0--3\% fluency pass rate. This is despite their ROUGE scores being only a few points below the teachers (Table~\ref{tab:main}).
 
-Second, the judge's free-text notes attribute the fluency failures to a single recurring artifact: the dominant note phrase across all small-student outputs is ``fragment with extra\_id token'' (74 of 180 rows, 41\%). The mT5 SentencePiece tokenizer assigns sentinel tokens \texttt{<extra\_id\_0>} through \texttt{<extra\_id\_99>} for its span-corruption pretraining objective, and these can leak into generated text if not explicitly stripped during decoding. The student models, including B2 which was fine-tuned on clean human references, appear to be emitting these sentinels in roughly every output. The underlying summary content is otherwise factually grounded (factual correctness is 83--97\% across the same outputs), suggesting a simple post-processing pass to strip sentinel tokens before evaluation would substantially improve the perceived output quality. This is a clear avenue for future work and a limitation that the heuristic-flag aggregates in \S\ref{sec:errors} silently absorbed because ROUGE's tokenizer treats angle-bracketed sentinels as punctuation and discards them.
+Second, the judge's free-text notes attribute the fluency failures to a single recurring artifact: the dominant note phrase across all small-student outputs is ``fragment with extra\_id token'' (\textbf{74 of 180 rows, 41\%}). The mT5 SentencePiece tokenizer assigns sentinel tokens \texttt{<extra\_id\_0>} through \texttt{<extra\_id\_99>} for its span-corruption pretraining objective, and these can leak into generated text if not explicitly stripped during decoding. The student models, including B2 which was fine-tuned on clean human references, appear to be emitting these sentinels in roughly every output. The underlying summary content is otherwise factually grounded (factual correctness is \textbf{83--97\%} across the same outputs), suggesting a simple post-processing pass to strip sentinel tokens before evaluation would substantially improve the perceived output quality. This is a clear avenue for future work and a limitation that the heuristic-flag aggregates in \S\ref{sec:errors} silently absorbed because ROUGE's tokenizer treats angle-bracketed sentinels as punctuation and discards them.
 
-\paragraph{Recurring failure modes.} Aggregating the judge's notes column, the five most common failure modes are: (a)~mT5 sentinel-token artifacts \texttt{<extra\_id\_*>} in small-student outputs (74 of 180 rows); (b)~mid-sentence truncation when generation hits the configured token cap (11 rows); (c)~non-summary boilerplate fragments where the model emits header-style scaffolding instead of prose (7 rows); (d)~broken syntax around sentinel-token insertions (3 rows); (e)~teacher hallucinations such as a ``George Clooney'' mention in Claude Haiku~4.5 outputs whose source articles do not reference the actor (2 rows). The first item dominates and would close most of the qualitative gap with a one-line post-processing fix; this is the single most actionable item identified by the qualitative analysis.
+\paragraph{Recurring failure modes.} The judge's notes column attributes most issues to four causes: mT5 \texttt{<extra\_id\_*>} sentinel artifacts in small-student outputs (74 of 180 rows), mid-sentence truncation at the token cap (11), non-summary boilerplate fragments (7), and rare teacher hallucinations (e.g.\ a ``George Clooney'' mention not in source). The sentinel-token issue dominates and is the single most actionable finding: a one-line post-processing fix would close most of the qualitative gap.
 
 \section{Ethics and Limitations}
 
-\textbf{Hallucination in news.} Both teacher LLMs hallucinate numeric facts on TR-News at 2--4\%, and on MLSUM-TR Claude Haiku 4.5 reaches 3.9\%. In a deployed news summarizer, even occasional fabricated numbers could mislead readers. The distilled students reduce this to 0.1--0.6\%, but are trained on data that contains those teacher hallucinations; the final hallucination rate in their training distribution should be quantified before deployment.
+\textbf{Hallucination and bias.} Teachers hallucinate numeric facts at \textbf{2--4\%} on TR-News and up to \textbf{3.9\%} on MLSUM-TR (Claude Haiku 4.5); distilled students reduce this to \textbf{0.1--0.6\%} but inherit the small fraction of teacher fabrications baked into training data. The teacher LLMs were trained on English-dominated corpora, so cultural and stylistic biases (Western framings, sporadic English vocabulary in Turkish output) likely propagate. Distilled Turkish summarizers could also be misused to generate synthetic news at scale; I do not release student weights publicly without consideration of this risk.
 
-\textbf{Bias inheritance.} The teacher LLMs were trained on corpora dominated by English-language content. Cultural and stylistic biases (Western-centric framings, occasional English vocabulary leaking into Turkish output) likely propagate from teacher to student.
+\textbf{Evaluation limitations.} ROUGE on Turkish systematically underestimates quality due to agglutinative-morphology fragmentation. BERTScore captures semantics but cannot detect hallucinated facts (a fluent confident lie scores high). The qualitative analysis in Section~\ref{sec:errors} is therefore essential to any deployment recommendation.
 
-\textbf{Misuse.} Distilled Turkish summarizers could be repurposed to generate synthetic Turkish news text at scale. I do not release student weights publicly without consideration of this risk.
-
-\textbf{Evaluation limitations.} ROUGE on Turkish systematically underestimates quality because agglutinative morphology splits semantically identical surface forms into different $n$-grams. BERTScore captures semantic similarity but cannot detect hallucinated facts: a fluent confident lie has high BERTScore. The hand-labeled qualitative analysis in Section~\ref{sec:errors} is essential to any specific recommendation derived from this paper.
-
-\textbf{Reproducibility.} All prompts, training configurations, evaluation scripts, and synthetic data caches are publicly available at \url{https://github.com/cagancaliskan/CENG467-term-project}. Total experimental cost was approximately \$15 in API fees plus 6 hours of T4 GPU time on Colab.
+\textbf{Reproducibility.} All prompts, training configurations, evaluation scripts, and synthetic data caches are publicly available at \url{https://github.com/cagancaliskan/CENG467-term-project}. Total experimental cost was approximately \$15 in API fees against \$25 in prepaid Anthropic credit, plus approximately 14 hours of T4 GPU time on Colab Premium.
 
 \section{Conclusion}
 
-A small student model (mT5-small + LoRA rank 8) trained on 10{,}000 synthetic summaries from a commercial LLM teacher matches the teacher within 1.7 ROUGE-1 points in-domain, outperforms the teacher by 1.4 R1 points out-of-domain on TR-News, hallucinates approximately five times less, and runs at a fraction of the inference cost. The teacher comparison is essentially a null result: GPT-4o-mini and Claude Haiku~4.5 are interchangeable both as zero-shot summarizers and as distillation supervisors. Ablations show that quality is bounded by the size of the synthetic supervision rather than by LoRA capacity; rank 8 is Pareto-optimal because higher ranks improve ROUGE only at the cost of more faithful behavior. The strongest case for distillation in this paper is out-of-domain robustness: the small student appears to learn a more universal extractive prior than the LLM it was distilled from.
+A small student model (mT5-small + LoRA rank 8) trained on 10{,}000 synthetic summaries from a commercial LLM teacher matches the teacher within \textbf{1.7 ROUGE-1 points} in-domain, outperforms the teacher by \textbf{1.4 R1 points} out-of-domain on TR-News, hallucinates \textbf{approximately five times less}, and runs at a fraction of the inference cost. The teacher comparison is essentially a null result: GPT-4o-mini and Claude Haiku~4.5 are interchangeable both as zero-shot summarizers and as distillation supervisors. Ablations show that quality is bounded by the size of the synthetic supervision rather than by LoRA capacity; rank 8 is Pareto-optimal because higher ranks improve ROUGE only at the cost of more faithful behavior. The strongest case for distillation in this paper is out-of-domain robustness: the small student appears to learn a more universal extractive prior than the LLM it was distilled from.
 
 \begin{thebibliography}{8}
 \bibitem{scialom2020mlsum}
