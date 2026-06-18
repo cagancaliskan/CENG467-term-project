@@ -1,0 +1,776 @@
+{
+  "systems": {
+    "B1": {
+      "label": "B1",
+      "n": 2000,
+      "gender": {
+        "male_mentions": 288,
+        "female_mentions": 56,
+        "female_share_pred": 0.1628,
+        "female_share_reference": 0.2153,
+        "female_share_delta_vs_reference": -0.0525
+      },
+      "leakage": {
+        "frac_summaries_with_foreign_token": 0.016,
+        "foreign_tokens_per_1k": 2.547,
+        "qwx_tokens_per_1k": 2.472
+      },
+      "faithfulness": {
+        "halluc_num_rate": 0.018,
+        "mean_len_ratio": 0.274,
+        "mean_extractive_overlap": 0.6439,
+        "mean_rouge1_stem": 0.1142
+      },
+      "topic": {
+        "per_topic": {
+          "unknown": {
+            "n": 2000,
+            "rouge1_stem": 0.1142,
+            "halluc_num_rate": 0.018,
+            "mean_len_ratio": 0.274
+          }
+        },
+        "fairness_gap_rouge1_stem": null
+      },
+      "examples": {
+        "leakage": [
+          {
+            "id": "51e9269ae8740c30",
+            "prediction": "Avrupa Birliği Başkanı Stuart Rowley, “Çalışanları (işlerinden) ayırmak"
+          },
+          {
+            "id": "4328d67c3ea5ba00",
+            "prediction": "- Çukur 73. yeni bölüm yayınlandı. Çukur - Show TV"
+          },
+          {
+            "id": "f9b12d3fb079aa13",
+            "prediction": "DEXİA'ya satmıştı Denizbank aktif büyüklüğü"
+          },
+          {
+            "id": "c2a31bb509cb4035",
+            "prediction": "özetle: Anne McClain'ın eşi Summer Worden'ın"
+          },
+          {
+            "id": "1f9e4947869d803c",
+            "prediction": "- Bolivya Genelkurmay Başkanı Williams Kaliman'a istifa"
+          },
+          {
+            "id": "1b2f7bd9b8604966",
+            "prediction": "devam edelim. Paylaş: Paylaş Paylaş tweet"
+          },
+          {
+            "id": "67d9cf89c0f1d629",
+            "prediction": "maçta 5 gole imza atan Vedat Muriqi konuştu."
+          },
+          {
+            "id": "1437c05d3a7b4c07",
+            "prediction": "en İHA'ya gözdağı verdi Trump, Twitter hesabından yaptığı açıklamayla şunları söyledi:"
+          }
+        ],
+        "gender_drop": [
+          {
+            "id": "85a1b1aa4cb81bdf",
+            "article_female_terms": 1,
+            "prediction": "özetle: \"Türkiye Cumhuriyeti Devlet Başkanı Ahmet Ağaoğlu"
+          },
+          {
+            "id": "d6a5955430672129",
+            "article_female_terms": 1,
+            "prediction": "Erdoğan'a sesleniyorum: 'Benim ne işim var?"
+          },
+          {
+            "id": "118d34f2d1d5ee75",
+            "article_female_terms": 1,
+            "prediction": "Fenerbahçe'ye 4 yıl sonra geri dönen Emre Belözoğlu."
+          },
+          {
+            "id": "96ed15dbd2008d3b",
+            "article_female_terms": 6,
+            "prediction": "Tayyip Erdoğan'dan taziye mesajı | Gündem haberleri"
+          },
+          {
+            "id": "ecc03a72b54ae74e",
+            "article_female_terms": 14,
+            "prediction": "özetle: Nazilli Devlet Hastanesi'nde görev yapan"
+          },
+          {
+            "id": "8850abace254e615",
+            "article_female_terms": 6,
+            "prediction": "Murat Dedeman ölüm haberi merak konusu oldu."
+          },
+          {
+            "id": "fb940bf58d425347",
+            "article_female_terms": 2,
+            "prediction": "Küçükkaya: \"Binali Yıldırım, helallik istiyor\""
+          },
+          {
+            "id": "13480018806fee6a",
+            "article_female_terms": 6,
+            "prediction": "Ramazan S.'yi arama çalışmaları sürüyor."
+          }
+        ]
+      }
+    },
+    "B2": {
+      "label": "B2",
+      "n": 2000,
+      "gender": {
+        "male_mentions": 862,
+        "female_mentions": 225,
+        "female_share_pred": 0.207,
+        "female_share_reference": 0.2153,
+        "female_share_delta_vs_reference": -0.0083
+      },
+      "leakage": {
+        "frac_summaries_with_foreign_token": 0.047,
+        "foreign_tokens_per_1k": 3.034,
+        "qwx_tokens_per_1k": 2.917
+      },
+      "faithfulness": {
+        "halluc_num_rate": 0.0035,
+        "mean_len_ratio": 0.703,
+        "mean_extractive_overlap": 0.9944,
+        "mean_rouge1_stem": 0.3136
+      },
+      "topic": {
+        "per_topic": {
+          "unknown": {
+            "n": 2000,
+            "rouge1_stem": 0.3136,
+            "halluc_num_rate": 0.0035,
+            "mean_len_ratio": 0.703
+          }
+        },
+        "fairness_gap_rouge1_stem": null
+      },
+      "examples": {
+        "leakage": [
+          {
+            "id": "c6d3b965387fcb1a",
+            "prediction": "Barış Pınarı Harekatı'na ilişkin, Twitter'dan, açıklamalarda bulundu."
+          },
+          {
+            "id": "85a1b1aa4cb81bdf",
+            "prediction": "Belek ilçesi Belek turizm merkezinde bulunan Montgomerie Maxx Royal Golf Kulübü'nde gerçekleştirilen Turkish Airlines Open 2019 Golf Turnuvası'nda saat 09.05'te çalan siren sesi ile birlikte dünyaca ünlü golfçüler ısınma hareketlerini bırak"
+          },
+          {
+            "id": "a31d5edf94663928",
+            "prediction": "İngiltere Ulusal Sağlık Sisteminden (NHS) yapılan açıklamada, 'Invasive Group A streptococcus (iGAS)' adlı bakterinin ülkenin doğu kıyısındaki Essex bölgesinde 12 kişinin ölümüne yol açtığı belirtildi."
+          },
+          {
+            "id": "96ed15dbd2008d3b",
+            "prediction": "Cumhurbaşkanı Recep Tayyip Erdoğan, Twitter hesabından taziye mesajı yayımladı."
+          },
+          {
+            "id": "53be9d39de7c47fb",
+            "prediction": "Diyanet İşleri Başkanlığı, Twitter hesabından paylaştığı \"Telefonun değil, eşinin yüzüne bak!\" başlıklı videoda teknoloji bağımlılığı eleştiriliyor."
+          },
+          {
+            "id": "d541e27335738cc0",
+            "prediction": "sezon başında İngiltere’nin Crystal Palace takımından iki yıllığına kiralık olarak renklerine bağladığı Alexander Sörloth’un attığı goller ve yaptığı asistler sayesinde ligde Futbol Federasyonu’nun verdiği primlerle kasasını doldurdu."
+          },
+          {
+            "id": "7f9a68dd54b01555",
+            "prediction": "Gazeteci ve FOX Ana Haber sunucusu Fatih Portakal, YouTube kanalını açtığını duyurduğu twitini silerek Youtube kanalını kapattığını açıkladı."
+          },
+          {
+            "id": "fb940bf58d425347",
+            "prediction": "CHP'li Ekrem İmamoğlu ile Cumhur İttifakı İstanbul adayı Binali Yıldırım'ın ortak canlı yayınının moderatörlük görevini üstlenen FOX TV sunucusu İsmail Küçükkaya, seçim sonuçlarını değerlendirdi."
+          }
+        ],
+        "gender_drop": [
+          {
+            "id": "3283380e3b3c5114",
+            "article_female_terms": 1,
+            "prediction": "Kocaeli’nin Gölcük ilçesinde yaşayan 43 yaşındaki Nafiye Şahin, kent merkezine gitmek için O.Ş. idaresindeki 41 J 3237 plakalı özel yolcu minibüsüne bindi."
+          },
+          {
+            "id": "77a0767d606c0690",
+            "article_female_terms": 1,
+            "prediction": "'da polis görürsem yolumu değiştiriyorum\" 5 senedir Türkiye'de olduğunu belirten Ahmed Elcasim ise, \"5 senedir İstanbul'dayım."
+          },
+          {
+            "id": "d6a5955430672129",
+            "article_female_terms": 1,
+            "prediction": "Kılıçdaroğlu'nun açıklamalarından öne çıkanlar şu şekilde; Türkiye'nin çözülemeyecek hiçbir sorunu yoktur."
+          },
+          {
+            "id": "7ed6ea311211a361",
+            "article_female_terms": 2,
+            "prediction": "Recep Tayyip Erdoğan, Cumhurbaşkanlığı Külliyesi'nde düzenlenen 30 Ağustos Zafer Bayramı'nı kutladı."
+          },
+          {
+            "id": "118d34f2d1d5ee75",
+            "article_female_terms": 1,
+            "prediction": "Emre Belözoğlu, sarı-lacivertli takıma şampiyonluk kazanmak için geri geldiğini söyledi."
+          },
+          {
+            "id": "96ed15dbd2008d3b",
+            "article_female_terms": 6,
+            "prediction": "Cumhurbaşkanı Recep Tayyip Erdoğan, Twitter hesabından taziye mesajı yayımladı."
+          },
+          {
+            "id": "a16f5a05a4ec4f1b",
+            "article_female_terms": 1,
+            "prediction": "'dan Fatih Terim'e sitem: Beni neden buraya getirdin Oğlunun boğazını kesen babanın savunması:"
+          },
+          {
+            "id": "1231458de6b0c463",
+            "article_female_terms": 1,
+            "prediction": "Feyzioğlu, Akdağmadeni ilçesindeki bir cenaze törenine katılmasının ardından Yozgat Barosu Başkanı Mehmet Şimşek'i ziyaret etti."
+          }
+        ]
+      }
+    },
+    "B3a": {
+      "label": "B3a",
+      "n": 2000,
+      "gender": {
+        "male_mentions": 1927,
+        "female_mentions": 608,
+        "female_share_pred": 0.2398,
+        "female_share_reference": 0.2153,
+        "female_share_delta_vs_reference": 0.0245
+      },
+      "leakage": {
+        "frac_summaries_with_foreign_token": 0.079,
+        "foreign_tokens_per_1k": 1.992,
+        "qwx_tokens_per_1k": 1.916
+      },
+      "faithfulness": {
+        "halluc_num_rate": 0.021,
+        "mean_len_ratio": 2.131,
+        "mean_extractive_overlap": 0.721,
+        "mean_rouge1_stem": 0.3307
+      },
+      "topic": {
+        "per_topic": {
+          "unknown": {
+            "n": 2000,
+            "rouge1_stem": 0.3307,
+            "halluc_num_rate": 0.021,
+            "mean_len_ratio": 2.131
+          }
+        },
+        "fairness_gap_rouge1_stem": null
+      },
+      "examples": {
+        "leakage": [
+          {
+            "id": "a31d5edf94663928",
+            "prediction": "İngiltere Ulusal Sağlık Sistemi, 'Invasive Group A streptococcus (iGAS)' bakterisinin Essex bölgesinde 12 ölümle sonuçlandığını açıkladı. Bakteri, hapşırma, öpüşme ve deri temasıyla bulaşırken, genellikle semptom göstermeden uzun süre yaşay"
+          },
+          {
+            "id": "d5afad0ce7ee7082",
+            "prediction": "Kasımpaşa, geçtiğimiz sezon devre arasında kiralık olarak kadrosuna kattığı Karim Hafez ile Wadi Degla kulübü arasında yapılan görüşmeler sonucunda, oyuncuyu satın alma opsiyonu ile birlikte 1 yıl daha kiralık olarak takımda tutma kararı al"
+          },
+          {
+            "id": "e313bbe035511c6f",
+            "prediction": "Fenerbahçe, Kolarov'un ardından Alman futbolcu Max Kruse ile transfer görüşmelerine başladı. Kruse'nin menajeri Ersin Akan, İstanbul'a gelerek Fenerbahçe Başkanı Ali Koç ile bir görüşme gerçekleştirecek. Fenerbahçe, Kruse ile 3 yıllık sözle"
+          },
+          {
+            "id": "0e4722ecfaed91bf",
+            "prediction": "Fransa'nın ev sahipliğinde düzenlenen turnuvanın çeyrek finalinde ABD, ev sahibi ülke ile karşılaştı ve maçı 2-1 kazanarak yarı finale yükseldi. Megan Rapinoe, ABD'nin gollerini atan isim olurken, Wendie Renard'ın golü ise skoru etkileyemed"
+          },
+          {
+            "id": "51e9269ae8740c30",
+            "prediction": "Ford, Avrupa genelinde 2020 yılının sonuna kadar 12 bin kişinin işine son vermeyi ve 6 üretim tesisini kapatmayı veya satmayı planladığını açıkladı. Kapatılacak tesisler arasında İngiltere, Fransa, Rusya ve Slovakya'daki fabrikalar yer alıy"
+          },
+          {
+            "id": "c3077f7f81b30bba",
+            "prediction": "Volkswagen, Türkiye'de 1,3 milyar euroluk yatırım yapmayı planlıyor ve görüşmelerin iki hafta içinde tamamlanmasını bekliyor. Yeni tesisin, Doğu Avrupa pazarı için VW Passat ve Skoda Superb gibi modellerden yılda 300,000 adet üretmesi ve 4,"
+          },
+          {
+            "id": "bb6623d5de1dbb62",
+            "prediction": "Yeni Malatyaspor, Süper Lig'in 4'üncü haftasında MKE Ankaragücü'nü 4-0 yenerek moral buldu ve Galatasaray maçı hazırlıklarına devam ediyor. Teknik direktör Sergen Yalçın, sakatlıkların takım üzerinde olumsuz etkisi olduğunu belirtirken, Gal"
+          },
+          {
+            "id": "1426b3b0fafe2039",
+            "prediction": "Süper Lig'in 8. haftasında Fenerbahçe, Denizlispor'u 2-1 mağlup etti. NTV yorumcusu Rıdvan Dilmen, Fenerbahçe'nin kalecisinin etkisiz olduğunu ve rakip takımın oyuna ortak olduğunu belirtti. Ayrıca, takımın performansını artıran oyuncular a"
+          }
+        ],
+        "gender_drop": [
+          {
+            "id": "3283380e3b3c5114",
+            "article_female_terms": 1,
+            "prediction": "Kocaeli'nin Gölcük ilçesinde, 43 yaşındaki Nafiye Şahin, özel bir minibüse binerken dengesini kaybedip açık kapıdan düştü ve ağır yaralandı. 16 gün süren tedavi sürecinin ardından hayatını kaybeden Şahin'in ölümü sonrası, olay günü gözaltın"
+          },
+          {
+            "id": "5373d080ecb0b889",
+            "article_female_terms": 3,
+            "prediction": "Kimse Bilmez dizisinin 18. yeni bölümüne ait 2. fragman yayınlandı ve dizi 20 Ekim 2019 Pazar akşamı ATV'de izleyiciyle buluşacak. Baba Yapım tarafından hazırlanan dizinin yönetmenliğini Kartal Çidamlı ve Hakan Eren üstlenirken, oyuncu kadr"
+          },
+          {
+            "id": "85a1b1aa4cb81bdf",
+            "article_female_terms": 1,
+            "prediction": "Turkish Airlines Open 2019 Golf Turnuvası'nda, 10 Kasım Atatürk'ü Anma Günü'nde saat 09.05'te çalan siren sesiyle golfçüler 1 dakikalık saygı duruşuna geçti. Türkiye Golf Federasyonu Başkanı Ahmet Ağaoğlu, Atatürk'ü anarak, onun tarihe mal "
+          },
+          {
+            "id": "eda2a6a03c02b009",
+            "article_female_terms": 7,
+            "prediction": "İstanbul Büyükşehir Belediye Başkanı Ekrem İmamoğlu, 2016 yılında belediye bünyesine aldığı Beylikdüzü Voleybol İhtisas Spor Kulübü'ne destek vermeyi kesince, sporcular 480 bin liralık alacaklarını tahsil edemedi ve kulübe haciz göndermeye "
+          },
+          {
+            "id": "ea79cf897c57792e",
+            "article_female_terms": 1,
+            "prediction": "TÜBİTAK destekli proje kapsamında, özel eğitim müfredatının güncellenmesi için üniversitelerden ve eğitim kurumlarından uzmanların katılımıyla çalışmalar yürütüldü. Milli Eğitim Bakanı Ziya Selçuk, özel eğitim programlarının güncellenmesine"
+          },
+          {
+            "id": "d6a5955430672129",
+            "article_female_terms": 1,
+            "prediction": "Kılıçdaroğlu, Türkiye'nin çözülemeyecek sorunu olmadığını ve sorunları çözme sözü verdiğini belirtti. İşçi haksızlıklarına karşı sendikaların ortak mücadele etmesi gerektiğini vurgulayan Kılıçdaroğlu, konfederasyonların siyasi partilerin ar"
+          },
+          {
+            "id": "319582a1dd30b3db",
+            "article_female_terms": 1,
+            "prediction": "Adana'da narkotik ekipleri, TAG Otoyolu'nda esrar sevkıyatı yapan bir otomobili durdurdu. Yapılan aramada, otomobilin bagajındaki yedek lastikten 6 kilo 275 gram toz esrar ele geçirildi. Sürücü Abdulhamit H. ile birlikte Ahmet B. ve Muhamet"
+          },
+          {
+            "id": "7ed6ea311211a361",
+            "article_female_terms": 2,
+            "prediction": "Cumhurbaşkanı Recep Tayyip Erdoğan, 30 Ağustos Zafer Bayramı resepsiyonunda yaptığı konuşmada, zaferin kahramanlarını anarak bu tarihi günün önemine vurgu yaptı. Erdoğan, geçmişteki mücadelelerin ardından gelecek nesillere daha aydınlık bir"
+          }
+        ]
+      }
+    },
+    "B3b": {
+      "label": "B3b",
+      "n": 2000,
+      "gender": {
+        "male_mentions": 1942,
+        "female_mentions": 617,
+        "female_share_pred": 0.2411,
+        "female_share_reference": 0.2153,
+        "female_share_delta_vs_reference": 0.0258
+      },
+      "leakage": {
+        "frac_summaries_with_foreign_token": 0.095,
+        "foreign_tokens_per_1k": 2.277,
+        "qwx_tokens_per_1k": 2.194
+      },
+      "faithfulness": {
+        "halluc_num_rate": 0.039,
+        "mean_len_ratio": 2.205,
+        "mean_extractive_overlap": 0.7258,
+        "mean_rouge1_stem": 0.3299
+      },
+      "topic": {
+        "per_topic": {
+          "unknown": {
+            "n": 2000,
+            "rouge1_stem": 0.3299,
+            "halluc_num_rate": 0.039,
+            "mean_len_ratio": 2.205
+          }
+        },
+        "fairness_gap_rouge1_stem": null
+      },
+      "examples": {
+        "leakage": [
+          {
+            "id": "a31d5edf94663928",
+            "prediction": "İngiltere'nin Essex bölgesinde Invasive Group A streptococcus (iGAS) adlı bakteri salgını yaşanmış, şubat ayında başlayan vakalar mart ayında salgına dönüşerek şu ana kadar 12 kişinin ölümüne ve 32 kişinin enfekte olmasına neden olmuştur. H"
+          },
+          {
+            "id": "d5afad0ce7ee7082",
+            "prediction": "Kasımpaşa, geçen sezon kiralık olarak takımında oynayan Karim Hafez'i, Wadi Degla kulübü ile yapılan görüşmeler sonucunda satın alma opsiyonu ile birlikte bir yıl daha kiralık olarak bağlamıştır."
+          },
+          {
+            "id": "e313bbe035511c6f",
+            "prediction": "Fenerbahçe, Werder Bremen'den ayrılan Alman futbolcu Max Kruse'yi transfer etmek için harekete geçti; Kruse'nin menajeri Ersin Akan bugün İstanbul'a gelerek Fenerbahçe Başkanı Ali Koç'la görüşecek ve kulüp 3 yıllık sözleşme imzalamak istiyo"
+          },
+          {
+            "id": "91128b11afd547fc",
+            "prediction": "ABD'nin Suriye Özel Temsilcisi James Jeffrey, Türkiye ile Rusya arasında varılan Suriye anlaşmasını eleştirerek Türkiye'nin çok fazla kazanmadığını, DEAŞ ile mücadeleyi zayıflattığını ve Rusya ile rejimi sürece dahil ettiğini belirtmiştir. "
+          },
+          {
+            "id": "0e4722ecfaed91bf",
+            "prediction": "Fransa, ev sahipliğinde düzenlenen turnuvanın çeyrek finalinde Paris'teki Parc des Princes Stadı'nda ABD ile karşılaştı ve 2-1 yenildi. ABD, Megan Anna Rapinoe'nin 5. dakikadaki golüyle 1-0 öne geçti, aynı oyuncu 65. dakikada ikinci golü at"
+          },
+          {
+            "id": "51e9269ae8740c30",
+            "prediction": "Ford, operasyonlarını yeniden yapılandırma planı kapsamında 2020 yılının sonuna kadar Avrupa genelinde 12 bin kişinin işine son vermeyi ve 6 üretim tesisini kapatmayı veya satmayı planlamaktadır. Kapatılacak veya satılacak tesisler arasında"
+          },
+          {
+            "id": "118d34f2d1d5ee75",
+            "prediction": "Fenerbahçe'ye 4 yıl sonra dönen Emre Belözoğlu, takıma şampiyonluk kazanmak için geri geldiğini belirterek, Avusturya kampında yapılan hazırlık çalışmalarından memnun olduğunu söyledi. Wolfsburg maçında olumlu performans sergileyen takımın,"
+          },
+          {
+            "id": "53be9d39de7c47fb",
+            "prediction": "Diyanet İşleri Başkanlığı, Twitter'da paylaştığı bir videoda teknoloji bağımlılığını eleştirerek, telefonla meşgul olan bir erkeğin eşinin çabalarını görmezden geldiğini, ancak telefona gelen \"Birazda eşinle ilgilensen\" mesajı sonrasında ik"
+          }
+        ],
+        "gender_drop": [
+          {
+            "id": "3283380e3b3c5114",
+            "article_female_terms": 1,
+            "prediction": "Kocaeli'nin Gölcük ilçesinde minibüse binen 43 yaşındaki Nafiye Şahin, ücretini ödedikten sonra aracın içinde yürürken açık kapıdan düşerek ağır yaralanmıştır. Şahin, 16 gün yoğun bakımda yaşam savaşı verdikten sonra hayatını kaybetmiştir. "
+          },
+          {
+            "id": "85a1b1aa4cb81bdf",
+            "article_female_terms": 1,
+            "prediction": "Turkish Airlines Open 2019 Golf Turnuvası'nda Serik ilçesi Belek turizm merkezinde dünyaca ünlü golfçüler, 10 Kasım Atatürk'ü Anma Günü'nde saat 09.05'te çalan siren ile birlikte 1 dakikalık saygı duruşu gerçekleştirdiler. Türkiye Golf Fede"
+          },
+          {
+            "id": "d6a5955430672129",
+            "article_female_terms": 1,
+            "prediction": "Kılıçdaroğlu, Türkiye'nin çözülemez sorunu olmadığını, ancak sorunları çözmeyenlerin bulunduğunu belirterek, hükümetin istihdam konusundaki başarı iddialarını eleştirmiştir. Makam ve mevki beklentisi olmadığını vurgulayan Kılıçdaroğlu, işçi"
+          },
+          {
+            "id": "7ed6ea311211a361",
+            "article_female_terms": 2,
+            "prediction": "Cumhurbaşkanı Erdoğan, Cumhurbaşkanlığı Külliyesi'nde düzenlenen 30 Ağustos Zafer Bayramı resepsiyonunda, İstiklal Harbi'nin başkomutanı Gazi Mustafa Kemal Atatürk'ü ve tüm şehitleri rahmetle yad ederek, her zaferin gerisinde kahramanların "
+          },
+          {
+            "id": "c4f109bbca0d2572",
+            "article_female_terms": 1,
+            "prediction": "Habertürk TV'de yayınlanan Spor Saati programında Fatih Altaylı, Beşiktaş'ın Galatasaray'ı 1-0 yendiği derbiyi değerlendirerek Fatih Terim'in söylemi ile eylemleri arasında tutarsızlık olduğunu belirtmiş, Falcao transferinin menajer oyunuyl"
+          },
+          {
+            "id": "118d34f2d1d5ee75",
+            "article_female_terms": 1,
+            "prediction": "Fenerbahçe'ye 4 yıl sonra dönen Emre Belözoğlu, takıma şampiyonluk kazanmak için geri geldiğini belirterek, Avusturya kampında yapılan hazırlık çalışmalarından memnun olduğunu söyledi. Wolfsburg maçında olumlu performans sergileyen takımın,"
+          },
+          {
+            "id": "a16f5a05a4ec4f1b",
+            "article_female_terms": 1,
+            "prediction": "Merkez Bankası faiz indirimi kararı aldı ve FED 11 yıl sonra arka arkaya ilk kez faiz indirimi gerçekleştirdi. Bilecik'te bir kılavuz treni kazası meydana geldi ve kazada 2 makinist hayatını kaybetti. Selçuk İnan, Fatih Terim'e yönelik eleş"
+          },
+          {
+            "id": "1231458de6b0c463",
+            "article_female_terms": 1,
+            "prediction": "Feyzioğlu, Barış Pınarı Harekatı'nı değerlendirerek, uluslararası basının anlaşmayı Türkiye'nin zaferi olarak nitelendirdiğini, ancak yurtiçinde bazı çevrelerin bunu olumsuz değerlendirdiğini belirtti. Türk Silahlı Kuvvetleri'nin 8 günde ya"
+          }
+        ]
+      }
+    },
+    "S-gpt": {
+      "label": "S-gpt",
+      "n": 2000,
+      "gender": {
+        "male_mentions": 1001,
+        "female_mentions": 259,
+        "female_share_pred": 0.2056,
+        "female_share_reference": 0.2153,
+        "female_share_delta_vs_reference": -0.0098
+      },
+      "leakage": {
+        "frac_summaries_with_foreign_token": 0.0525,
+        "foreign_tokens_per_1k": 2.863,
+        "qwx_tokens_per_1k": 2.763
+      },
+      "faithfulness": {
+        "halluc_num_rate": 0.0045,
+        "mean_len_ratio": 0.819,
+        "mean_extractive_overlap": 0.9883,
+        "mean_rouge1_stem": 0.3059
+      },
+      "topic": {
+        "per_topic": {
+          "unknown": {
+            "n": 2000,
+            "rouge1_stem": 0.3059,
+            "halluc_num_rate": 0.0045,
+            "mean_len_ratio": 0.819
+          }
+        },
+        "fairness_gap_rouge1_stem": null
+      },
+      "examples": {
+        "leakage": [
+          {
+            "id": "85a1b1aa4cb81bdf",
+            "prediction": "ilçesi Belek turizm merkezinde bulunan Montgomerie Maxx Royal Golf Kulübü'nde gerçekleştirilen Turkish Airlines Open 2019 Golf Turnuvası'nda saat 09.05'te çalan siren sesi ile birlikte dünyaca ünlü golfçüler ısınma hareketlerini bırakarak 1"
+          },
+          {
+            "id": "a31d5edf94663928",
+            "prediction": "İngiltere Ulusal Sağlık Sisteminden (NHS) yapılan açıklamada, 'Invasive Group A streptococcus (iGAS) adlı bakterinin ülkenin doğu kıyısındaki Essex bölgesinde 12 kişinin ölümüne yol açtığı belirtildi."
+          },
+          {
+            "id": "e313bbe035511c6f",
+            "prediction": "Bremen'den ayrılan Max Kruse, Fenerbahçeli yetkililere takımda 10 numaralı formayı sordu. Fenerbahçe, Kolarov'dan sonra ikinci bombasını patlatmaya hazırlanıyor."
+          },
+          {
+            "id": "96ed15dbd2008d3b",
+            "prediction": "Şule Yüksel Şenler, yaklaşık 8 aydır tedavi gördüğü Bağcılar Medipol Mega Üniversite Hastanesinde hayatını kaybetti. Erdoğan, sosyal medya Twitter hesabından taziye mesajı yayımladı."
+          },
+          {
+            "id": "53be9d39de7c47fb",
+            "prediction": "Diyanet İşleri Başkanlığı, Twitter hesabından paylaştığı \"Telefonun değil, eşinin yüzüne bak\" başlıklı videoda teknoloji bağımlılığı eleştiriliyor."
+          },
+          {
+            "id": "c3077f7f81b30bba",
+            "prediction": "1,3 milyar euroluk yatırımını Türkiye'de yapması beklenen Volkswagen'de geri sayım başladı."
+          },
+          {
+            "id": "d541e27335738cc0",
+            "prediction": "sezon başında İngiltere'nin Crystal Palace takımından iki yıllığına kiralık olarak renklerine bağladığı Alexander Sörloth'un attığı goller ve yaptığı asistler sayesinde ligde Futbol Federasyonu'nun verdiği primlerle kasasını doldurdu."
+          },
+          {
+            "id": "7f9a68dd54b01555",
+            "prediction": "YouTube kanalını açtığını duyurduğu twitini silerek Youtube kanalını kapattığını açıkladı. Portakal, YouTube kanalının şirket kuralları gereği kapattığını duyurarak, YouTube kanalı kapattığını belirterek, Youtube kanalını kullanmamak zorund"
+          }
+        ],
+        "gender_drop": [
+          {
+            "id": "5373d080ecb0b889",
+            "article_female_terms": 3,
+            "prediction": "18. yeni bölüm 2. fragmanı yayınlandı. Baba Yapım tarafından ortaya konan dizinin yönetmen koltuğunda Kartal Çidamlı ve Hakan Eren oturuyor."
+          },
+          {
+            "id": "77a0767d606c0690",
+            "article_female_terms": 1,
+            "prediction": "Türkiye'de olduğunu belirten Ahmed Elcasim ise, \"Nerede polis görürsem yolumu değiştiriyorum\" 5 senedir İstanbul'dayım."
+          },
+          {
+            "id": "7ed6ea311211a361",
+            "article_female_terms": 2,
+            "prediction": "Recep Tayyip Erdoğan, Cumhurbaşkanlığı Külliyesi'nde düzenlenen 30 Ağustos Zafer Bayramı resepsiyonundaki konuşmasına, kendisini dinleyenleri selamlayarak başladı."
+          },
+          {
+            "id": "118d34f2d1d5ee75",
+            "article_female_terms": 1,
+            "prediction": "Emre Belözoğlu, sarı-lacivertli takıma şampiyonluk kazanmak için geri geldiğini belirtti."
+          },
+          {
+            "id": "1231458de6b0c463",
+            "article_female_terms": 1,
+            "prediction": ", Akdağmadeni ilçesindeki bir cenaze törenine katılmasının ardından Yozgat Barosu Başkanı Mehmet Şimşek'i ziyaret etti."
+          },
+          {
+            "id": "8850abace254e615",
+            "article_female_terms": 6,
+            "prediction": "Murat Dedeman, 68 yaşında tedavi gördüğü hastanede yaşamını yitirdi."
+          },
+          {
+            "id": "fb940bf58d425347",
+            "article_female_terms": 2,
+            "prediction": "Millet İttifakı İstanbul adayı Binali Yıldırım'ın ortak canlı yayınının moderatörlük görevini üstlenen FOX TV sunucusu İsmail Küçükkaya, seçim sonuçlarını değerlendirdi."
+          },
+          {
+            "id": "a6f161b2cb7ad05e",
+            "article_female_terms": 1,
+            "prediction": "Sanayi ve Teknoloji Bakanı Mustafa Varank, KOSGEB'den yararlanmak isteyen girişimcilere yeni kredi programı hazırladıklarını belirterek, yurt dışından gelen girişimciler için çeşitli destekler sunduklarını belirtti."
+          }
+        ]
+      }
+    },
+    "S-claude": {
+      "label": "S-claude",
+      "n": 2000,
+      "gender": {
+        "male_mentions": 1111,
+        "female_mentions": 282,
+        "female_share_pred": 0.2024,
+        "female_share_reference": 0.2153,
+        "female_share_delta_vs_reference": -0.0129
+      },
+      "leakage": {
+        "frac_summaries_with_foreign_token": 0.061,
+        "foreign_tokens_per_1k": 3.086,
+        "qwx_tokens_per_1k": 2.999
+      },
+      "faithfulness": {
+        "halluc_num_rate": 0.004,
+        "mean_len_ratio": 0.945,
+        "mean_extractive_overlap": 0.9842,
+        "mean_rouge1_stem": 0.3037
+      },
+      "topic": {
+        "per_topic": {
+          "unknown": {
+            "n": 2000,
+            "rouge1_stem": 0.3037,
+            "halluc_num_rate": 0.004,
+            "mean_len_ratio": 0.945
+          }
+        },
+        "fairness_gap_rouge1_stem": null
+      },
+      "examples": {
+        "leakage": [
+          {
+            "id": "85a1b1aa4cb81bdf",
+            "prediction": "ilçesi Belek turizm merkezinde bulunan Montgomerie Maxx Royal Golf Kulübü'nde gerçekleştirilen Turkish Airlines Open 2019 Golf Turnuvası'nda saat 09.05'te çalan siren sesi ile birlikte dünyaca ünlü golfçüler ısınma hareketlerini bırakarak 1"
+          },
+          {
+            "id": "a31d5edf94663928",
+            "prediction": "İngiltere Ulusal Sağlık Sisteminden (NHS) yapılan açıklamada, invasive Group A streptococcus (iGAS) adlı bakterinin ülkenin doğu kıyısındaki Essex bölgesinde 12 kişinin ölümüne yol açtığı belirtildi."
+          },
+          {
+            "id": "e313bbe035511c6f",
+            "prediction": "Bremen altyapısında başlayan Max Kruse, Fenerbahçeli yetkililere takımda 10 numaralı formanın boşta olup olmadığını sordu."
+          },
+          {
+            "id": "118d34f2d1d5ee75",
+            "prediction": "Fenerbahçe'ye 4 yıl sonra geri dönen Emre Belözoğlu, sarı-lacivertli takıma şampiyonluk kazanmak için geri geldiğini belirterek, sezon başı kamplarında Alman ekibi Wolfsburg ile oynadığı hazırlık maçında olumlu sinyaller verdiğini belirtmiş"
+          },
+          {
+            "id": "53be9d39de7c47fb",
+            "prediction": "Diyanet İşleri Başkanlığı, Twitter hesabından paylaştığı \"Telefonun değil, eşinin yüzüne bak\" başlıklı videoda teknoloji bağımlılığı eleştiriliyor."
+          },
+          {
+            "id": "c3077f7f81b30bba",
+            "prediction": "1,3 milyar euroluk yatırımını Türkiye'de yapması beklenen Volkswagen'de geri sayım başladı."
+          },
+          {
+            "id": "d541e27335738cc0",
+            "prediction": "sezon başında İngiltere'nin Crystal Palace takımından iki yıllığına kiralık olarak renklerine bağladığı Alexander Sörloth, ligde Futbol Federasyonu'nun verdiği primlerle kasasını doldurdu."
+          },
+          {
+            "id": "7f9a68dd54b01555",
+            "prediction": "Fatih Portakal, YouTube kanalını açtığını duyurduğu twitini silerek Youtube kanalını kapattığını duyurarak, YouTube kanalını kullanmamak zorunda olduğunu ifade etti. Portakal ayrıca kişisel Twitter hesabından YouTube kanalı açdığını duyurdu"
+          }
+        ],
+        "gender_drop": [
+          {
+            "id": "5373d080ecb0b889",
+            "article_female_terms": 3,
+            "prediction": "18. yeni bölüm 2. fragmanı yayınlandı. Baba Yapım tarafından ortayakonan dizinin yönetmen koltuğunda Kartal Çidamlı ve Hakan Eren oturuyor."
+          },
+          {
+            "id": "77a0767d606c0690",
+            "article_female_terms": 1,
+            "prediction": "Ahmed Elcasim ise, \"Nerede polis görürsem yolumu değiştiriyorum\" 5 senedir İstanbul'dayım."
+          },
+          {
+            "id": "d6a5955430672129",
+            "article_female_terms": 1,
+            "prediction": "Kılıçdaroğlu'nun açıklamalarından öne çıkanlar şu şekilde; Türkiye'nin çözülemeyecek hiçbir sorunu yoktur."
+          },
+          {
+            "id": "7ed6ea311211a361",
+            "article_female_terms": 2,
+            "prediction": "Recep Tayyip Erdoğan, Cumhurbaşkanlığı Külliyesi'nde düzenlenen 30 Ağustos Zafer Bayramı resepsiyonundaki konuşmasına katılanlara teşekkür ederek, Türkiye'nin kuruluşunun 100'üncü yılı olan 2023 için belirlediğimiz hedefler, 2053 ve 2071 vi"
+          },
+          {
+            "id": "118d34f2d1d5ee75",
+            "article_female_terms": 1,
+            "prediction": "Fenerbahçe'ye 4 yıl sonra geri dönen Emre Belözoğlu, sarı-lacivertli takıma şampiyonluk kazanmak için geri geldiğini belirterek, sezon başı kamplarında Alman ekibi Wolfsburg ile oynadığı hazırlık maçında olumlu sinyaller verdiğini belirtmiş"
+          },
+          {
+            "id": "1231458de6b0c463",
+            "article_female_terms": 1,
+            "prediction": ", Akdağmadeni ilçesindeki bir cenaze törenine katılmasının ardından Yozgat Barosu Başkanı Mehmet Şimşek'i ziyaret etti."
+          },
+          {
+            "id": "8850abace254e615",
+            "article_female_terms": 6,
+            "prediction": "Murat Dedeman, 68 yaşında tedavi gördüğü hastanede yaşamını yitirdi."
+          },
+          {
+            "id": "fb940bf58d425347",
+            "article_female_terms": 2,
+            "prediction": "Millet İttifakı İstanbul adayı Binali Yıldırım'ın ortak canlı yayınının moderatörlük görevini üstlenen FOX TV sunucusu İsmail Küçükkaya, seçim sonuçlarını değerlendirdi."
+          }
+        ]
+      }
+    }
+  },
+  "source_female_share": 0.2442,
+  "n_topics": 1,
+  "qual": {
+    "B1": {
+      "n": 30,
+      "note_categories": {
+        "omission_fragment": 25,
+        "fabrication": 1,
+        "numeric_unit": 1,
+        "repetition": 3
+      },
+      "identity_attribution_errors": 0,
+      "fabrication_errors": 1,
+      "axis_pass_rate": {
+        "factual_correct": 0.9666666666666667,
+        "completeness": 0.03333333333333333,
+        "fluency": 0.03333333333333333,
+        "morpho_correct": 1.0,
+        "no_mode_collapse": 0.9333333333333333
+      }
+    },
+    "B2": {
+      "n": 30,
+      "note_categories": {
+        "omission_fragment": 29,
+        "fabrication": 1
+      },
+      "identity_attribution_errors": 0,
+      "fabrication_errors": 1,
+      "axis_pass_rate": {
+        "factual_correct": 0.9666666666666667,
+        "completeness": 0.3333333333333333,
+        "fluency": 0.03333333333333333,
+        "morpho_correct": 1.0,
+        "no_mode_collapse": 1.0
+      }
+    },
+    "B3a": {
+      "n": 30,
+      "note_categories": {
+        "other": 30
+      },
+      "identity_attribution_errors": 0,
+      "fabrication_errors": 0,
+      "axis_pass_rate": {
+        "factual_correct": 1.0,
+        "completeness": 1.0,
+        "fluency": 1.0,
+        "morpho_correct": 1.0,
+        "no_mode_collapse": 1.0
+      }
+    },
+    "B3b": {
+      "n": 30,
+      "note_categories": {
+        "other": 18,
+        "omission_fragment": 11,
+        "fabrication": 1
+      },
+      "identity_attribution_errors": 0,
+      "fabrication_errors": 1,
+      "axis_pass_rate": {
+        "factual_correct": 0.9666666666666667,
+        "completeness": 1.0,
+        "fluency": 0.6333333333333333,
+        "morpho_correct": 1.0,
+        "no_mode_collapse": 1.0
+      }
+    },
+    "S-gpt": {
+      "n": 30,
+      "note_categories": {
+        "omission_fragment": 26,
+        "identity_attribution": 2,
+        "repetition": 1,
+        "fabrication": 1
+      },
+      "identity_attribution_errors": 2,
+      "fabrication_errors": 1,
+      "axis_pass_rate": {
+        "factual_correct": 0.9,
+        "completeness": 0.5666666666666667,
+        "fluency": 0.0,
+        "morpho_correct": 0.9666666666666667,
+        "no_mode_collapse": 0.9666666666666667
+      }
+    },
+    "S-claude": {
+      "n": 30,
+      "note_categories": {
+        "omission_fragment": 22,
+        "identity_attribution": 6,
+        "repetition": 1,
+        "fabrication": 1
+      },
+      "identity_attribution_errors": 6,
+      "fabrication_errors": 1,
+      "axis_pass_rate": {
+        "factual_correct": 0.8333333333333334,
+        "completeness": 0.6666666666666666,
+        "fluency": 0.03333333333333333,
+        "morpho_correct": 0.9333333333333333,
+        "no_mode_collapse": 0.9666666666666667
+      }
+    }
+  }
+}

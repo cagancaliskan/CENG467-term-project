@@ -33,11 +33,14 @@ LNCS-format paper: `report/main.pdf` (compiled from `report/main.tex` + `report/
 
 ## Repository structure
 
+> For a complete file-by-file / folder-by-folder guide, see **[`CODEMAP.md`](CODEMAP.md)**.
+
 ```
 .
 ├── PROJECT_PLAN.md           Roadmap, experiment matrix, timeline
 ├── WEEK1_RUNBOOK.md          Day-by-day Week 1 commands
 ├── README.md                 This file
+├── CODEMAP.md                File-by-file guide to every folder and module
 ├── requirements.txt          Pinned Python dependencies (Colab T4)
 ├── .env.example              Template for API keys
 ├── configs/                  YAML configs for data + training + budget
@@ -46,14 +49,14 @@ LNCS-format paper: `report/main.pdf` (compiled from `report/main.tex` + `report/
 │   ├── data/                 MLSUM-TR + TR-News loaders, synthetic prep
 │   ├── teachers/             Prompts, OpenAI + Anthropic clients, generator (real-time + batch)
 │   ├── student/              mT5-small + LoRA train and inference
-│   ├── eval/                 ROUGE + BERTScore + error flags + LLM-as-judge qual analysis
+│   ├── eval/                 ROUGE + BERTScore + error flags + LLM-as-judge + bias analysis
 │   └── utils/                Shared helpers (io, logging, seed)
 ├── scripts/                  Bash entry points for each pipeline stage
 ├── notebooks/                Three Colab notebooks (week1, train, eval)
 ├── demo/                     Gradio app (app.py)
 ├── data/                     gitignored except synthetic/
 ├── outputs/                  gitignored except results/
-└── report/                   LNCS LaTeX source + figures + final PDF
+└── report/                   LNCS LaTeX source + figures (incl. bias fig6-8) + final PDF
 ```
 
 ## Setup
@@ -117,6 +120,29 @@ python -m src.eval.run_eval \
 ```
 
 The aggregated metric tables for both in-domain and out-of-domain evaluations are committed under `outputs/results/`.
+
+## Bias & ethics analysis (report §7)
+
+Post-hoc bias probes over the existing prediction files — **no retraining, no GPU, no API key**. Measures (i) gender representation vs. the source articles and human references, (ii) foreign/English token leakage, and (iii) a representational-harm error taxonomy from the LLM-judge notes.
+
+```bash
+python -m src.eval.bias_analysis \
+    --pred B1=outputs/predictions/B1_zeroshot.jsonl \
+    --pred B2=outputs/predictions/B2_human.jsonl \
+    --pred B3a=outputs/predictions/B3a_gpt.jsonl \
+    --pred B3b=outputs/predictions/B3b_claude.jsonl \
+    --pred S-gpt=outputs/predictions/S_gpt.jsonl \
+    --pred S-claude=outputs/predictions/S_claude.jsonl \
+    --source data/raw/mlsum_tr/test.jsonl \
+    --qual outputs/results/qual_labels_filled.csv \
+    --out-json outputs/results/bias_results.json \
+    --fig-dir report/figures
+
+# Sanity check the probes with no data:
+python -m src.eval.bias_analysis --self-test
+```
+
+Results land in `outputs/results/bias_results.json` and figures `report/figures/fig6-8`. Headline findings: the male-skewed corpus (24% female mentions) is preserved by the verbose teachers but compressed toward ~20% by the small students (matching the human references — i.e. compression, not distillation, drives the skew); teachers leak foreign tokens in 8-10% of summaries vs 5-6% for students; and identity/attribution errors appear only in the distilled students.
 
 ## Ablations completed
 
