@@ -67,6 +67,9 @@ def main() -> None:
     p.add_argument("--seed", type=int, default=42)
     p.add_argument("--limit", type=int, default=None,
                     help="Cap number of articles (for quick smoke tests).")
+    p.add_argument("--keep-sentinels", action="store_true",
+                    help="Do NOT strip <extra_id_*> sentinels. Only for the artifact\n"
+                          "analysis in the camera-ready revision; never for released output.")
     args = p.parse_args()
 
     set_seed(args.seed)
@@ -103,7 +106,8 @@ def main() -> None:
         texts = tokenizer.batch_decode(out, skip_special_tokens=True)
         # Defensive: strip mT5 SentencePiece sentinel tokens that leak through
         # skip_special_tokens. See report §6.2.
-        texts = [_SENTINEL_RE.sub("", t).strip() for t in texts]
+        if not args.keep_sentinels:
+            texts = [_SENTINEL_RE.sub("", t).strip() for t in texts]
 
         for row, pred in zip(batch, texts):
             out_records.append({
