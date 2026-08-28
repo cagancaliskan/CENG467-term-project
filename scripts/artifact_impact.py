@@ -19,7 +19,13 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
+
+# Run as `python scripts/artifact_impact.py`, sys.path[0] is scripts/, so
+# `from src.eval.stats import ...` fails and every paired CI silently degrades
+# to "-". Put the repo root on the path first.
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 METRICS = [
     ("standard_rouge1_f", "R1 std F1"),
@@ -86,6 +92,7 @@ def main() -> None:
                     ci_txt = f"[{ci.low:+.4f}, {ci.high:+.4f}]"
                 except Exception as e:  # pragma: no cover
                     row["ci_error"] = str(e)
+                    print(f"  !! CI failed for {label}/{key}: {e}", file=sys.stderr)
             out[label][key] = row
             md.append(f"| {label} | {pretty} | {dv:.4f} | {cv:.4f} | {cv-dv:+.4f} | {ci_txt} |")
 

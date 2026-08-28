@@ -24,6 +24,31 @@ from src.utils.seed import set_seed
 LOG = get_logger("data.prep")
 
 
+def _load_teacher_jsonl(path: Path) -> dict[str, str]:
+    """Load a consolidated cache: one JSON object per line, {id, summary, ...}."""
+    out: dict[str, str] = {}
+    with open(path, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            rec = json.loads(line)
+            summary = (rec.get("summary") or "").strip()
+            if summary and rec.get("id"):
+                out[rec["id"]] = summary
+    LOG.info("Loaded %d teacher summaries from %s", len(out), path)
+    return out
+
+
+def load_teacher(teacher: str, variant: str) -> dict[str, str]:
+    """Prefer the consolidated JSONL (committed to the repo); fall back to the
+    per-article directory (Drive-only, ~22k files)."""
+    jsonl = Path(f"data/synthetic/{teacher}_{variant}.jsonl")
+    if jsonl.exists():
+        return _load_teacher_jsonl(jsonl)
+    return _load_teacher_dir(Path(f"data/synthetic/{teacher}/{variant}"))
+
+
 def _load_teacher_dir(teacher_dir: Path) -> dict[str, str]:
     """Map article_id -> teacher summary string."""
     out: dict[str, str] = {}
@@ -75,8 +100,7 @@ def main() -> None:
         def get_target(row: dict) -> str | None:
             return row.get("reference")
     else:
-        teacher_dir = Path(f"data/synthetic/{args.teacher}/{args.prompt_variant}")
-        teacher_map = _load_teacher_dir(teacher_dir)
+        teacher_map = load_teacher(args.teacher, args.prompt_variant)
 
         def get_target(row: dict) -> str | None:
             return teacher_map.get(row["id"])
