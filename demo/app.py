@@ -197,7 +197,7 @@ with gr.Blocks(title="Turkish News Summarizer — Distilled vs Teacher") as demo
         "trained on 10,000 synthetic summaries from the respective teacher. All four students "
         "use the same hyperparameters (LoRA rank 8 on q/v projections, 3 epochs, fp32) and run "
         "in well under a second per article on a T4 GPU. See "
-        "[the project repository](https://github.com/cagancaliskan/CENG467-term-project) for "
+        "[the project repository](https://github.com/cagancaliskan/turkish-summarization-distillation) for "
         "training details, evaluation results, and the LNCS-format paper."
     )
 

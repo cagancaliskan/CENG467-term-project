@@ -40,7 +40,7 @@ Abstractive summarization of news articles is a sequence-to-sequence generation 
 
 This paper studies whether a small student model fine-tuned on synthetic summaries from a teacher LLM can recover most of the teacher's quality while being orders of magnitude cheaper at inference. Concretely, I prompt each of two commercial LLMs to generate $\sim$10{,}000 abstractive summaries of MLSUM-TR articles, then fine-tune mT5-small (\(\sim\)300M parameters) with LoRA adapters on those synthetic pairs. I compare the resulting student against three baselines: zero-shot mT5-small, mT5-small supervised on human reference summaries, and the teacher LLM itself. I evaluate using ROUGE (standard and Turkish stem-aware variants), BERTScore F1, and a suite of heuristic error flags. I additionally evaluate every system on a held-out corpus (TR-News) to assess out-of-domain generalization.
 
-\paragraph{Contributions.} I provide an empirical mapping of synthetic-data distillation for Turkish summarization across four ablation dimensions (data size, LoRA rank, prompt design, teacher choice), with evidence that the distilled student outperforms both teachers out-of-domain and hallucinates roughly five times less in-domain despite training on outputs that include teacher hallucinations. The full pipeline is at \url{https://github.com/cagancaliskan/CENG467-term-project}.
+\paragraph{Contributions.} I provide an empirical mapping of synthetic-data distillation for Turkish summarization across four ablation dimensions (data size, LoRA rank, prompt design, teacher choice), with evidence that the distilled student outperforms both teachers out-of-domain and hallucinates roughly five times less in-domain despite training on outputs that include teacher hallucinations. The full pipeline is at \url{https://github.com/cagancaliskan/turkish-summarization-distillation}.
 
 \section{Related Work}
 
@@ -372,7 +372,7 @@ ROUGE on Turkish systematically underestimates quality due to agglutinative-morp
 
 \subsection{Reproducibility}
 
-All prompts, training configurations, evaluation scripts, and synthetic data caches are publicly available at \url{https://github.com/cagancaliskan/CENG467-term-project}. Total experimental cost was approximately \$15 in API fees against \$25 in prepaid Anthropic credit, plus approximately 14 hours of T4 GPU time on Colab Premium.
+All prompts, training configurations, evaluation scripts, and synthetic data caches are publicly available at \url{https://github.com/cagancaliskan/turkish-summarization-distillation}. Total experimental cost was approximately \$15 in API fees against \$25 in prepaid Anthropic credit, plus approximately 14 hours of T4 GPU time on Colab Premium.
 
 \section{Conclusion}
 

@@ -36,3 +36,7 @@ report/_overleaf_upload.zip
 report/_overleaf_upload/
 report/_preview/
 report/Synthetic_Data_Distillation_*.pdf
+
+# Superseded / bulky archives kept out of the working tree
+docs/archive/*.tar.gz
+docs/archive/*.docx.zip

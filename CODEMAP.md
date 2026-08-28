@@ -16,8 +16,8 @@ evaluates it against three baselines on MLSUM-TR and TR-News.
 | --- | --- |
 | `README.md` | Project overview, headline results, setup, end-to-end run commands. |
 | `CODEMAP.md` | **This file** — file-by-file / folder-by-folder guide. |
-| `PROJECT_PLAN.md` | Roadmap, experiment matrix, and timeline. |
-| `WEEK1_RUNBOOK.md` | Day-by-day Week-1 command log. |
+| `PREREGISTRATION.md` | Primary outcome, equivalence margin, seed plan and judge-exclusion rule, fixed before the analysis. |
+| `LICENSE` / `CITATION.cff` | MIT licence and citation metadata. |
 | `requirements.txt` | Pinned Python dependencies (Colab T4 compatible). |
 | `.env.example` | Template for `OPENAI_API_KEY` / `ANTHROPIC_API_KEY`. |
 | `configs/` | YAML configs for data, training presets, and budget. |
@@ -27,7 +27,7 @@ evaluates it against three baselines on MLSUM-TR and TR-News.
 | `demo/` | Gradio web demo. |
 | `data/` | Datasets and synthetic caches (mostly git-ignored). |
 | `outputs/` | Predictions, checkpoints, logs, and committed result tables. |
-| `report/` | LNCS LaTeX paper, figures, and the compiled PDF. |
+| `report/` | IEEE LaTeX paper (`main_ieee.tex`), figures, compiled PDF. |
 
 ---
 
@@ -168,13 +168,13 @@ Most large artifacts are git-ignored (regenerable). What you see in a fresh clon
 ## 8. `report/` — the paper
 | Path | Contains |
 | --- | --- |
-| `main.tex` | LNCS LaTeX source (sections, tables, §7 bias subsection, bibliography). |
-| `main.pdf` | Compiled paper (rebuild on Overleaf with the LNCS template after editing `main.tex`). |
+| `main_ieee.tex` | IEEE LaTeX source (camera-ready). |
+| `main_ieee.pdf` | Compiled camera-ready. |
 | `figures/fig1–fig5` | Main-results, scaling, LoRA, OOD, and quality-vs-faithfulness figures. |
 | `figures/fig6_bias_gender.png` | §7 gender-representation figure. |
 | `figures/fig7_bias_leakage.png` | §7 foreign-token-leakage figure. |
 | `figures/fig8_bias_repharm.png` | §7 representational-harm figure. |
-| `progress_report.docx`, `*.docx.zip` | Earlier progress report (superseded by `main.pdf`). |
+| `docs/development/` | Planning and process notes. `docs/archive/` holds superseded drafts. |
 
 ---
 
